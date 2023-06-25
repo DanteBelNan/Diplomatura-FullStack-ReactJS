@@ -7,7 +7,7 @@ Sigue el modelo cliente-servidor, en el que un cliente establece una conexión, 
 
 Es un protocolo sin estado, el servidor no guarda ningun dato entre dos peticiones
 
-![Imagen representativa](imgs/http.png.png)
+![Imagen representativa](imgs/http.png)
 2. Dominios
 Es el nombre unico e irrepetible que se le da a un sitio de Internet para que las marcas dueñas del sitio puedan identificarlas de forma comoda y sencillas, asi mismo como los usuarios y los clientes
 
