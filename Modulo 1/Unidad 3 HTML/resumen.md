@@ -5,4 +5,4 @@ Los documentos HTML se encuentran estrictamente organizados. Cada parte del docu
 
 Estas mismas tienen inicio y cierre para los diferentes formatos que se quieren aplicar, de esta forma se indica cuando empieza y finaliza el formato
 
-Por ejemplo, <p>Indica texto de parrafo </p>
+Por ejemplo, "<p>Indica texto de parrafo </p>"
