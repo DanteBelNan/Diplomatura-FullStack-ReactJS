@@ -25,3 +25,26 @@ p{
     column-count: 2;
     column-gap: 20px;
 }
+
+4. Bordes redondeados
+La propiedad border-radius permite redondear las esquinas de la caja, pueden ser todas iguales, o distintas
+
+.br1{
+    border-radius: 5px; //Todos los bordes de 5px
+}
+
+.br2{
+    border-radius: 5px 10px 5px 10px; //alterna entre 10 y 5 px los bordes
+}
+
+5. Tipografias e Iconos
+Las tipografias se adjuntan mediante @font-face, google fonts nos da la posibilidad de trabajar con tipografias modernas en nuestros sitios https://fonts.google.com/
+
+Para seleccionar cualquiera que queramos de la pagina, la clickeamos, le damos a download family, y en donde se nos abre un Embed, copiamos en css y html los codigos que nos pone
+
+Iconos
+Para incluir iconos en nuestro sitio podemos utilizar una libreria como FontAwesome, esta cuenta con un amplio catalogo de iconos, su link es el siguiente https://cdnjs.com/libraries/font-awesome
+
+La primer columna roja, tocamos el icono del medio que es un </>
+Luego, accedemos a https://fontawesome.com/icons
+Donde tenemos un gran catalogo de iconos, alli, clickeamos el que mas nos guste, y copiamos su codigo html y lo pegamos en nuestra computadora.
