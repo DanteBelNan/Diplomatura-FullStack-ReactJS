@@ -1,5 +1,5 @@
 #title{
-    color: blue;
+    color: white;
 }
 
 .img img{
@@ -10,9 +10,13 @@
 }
 
 .name{
-    background-color: rgb(172, 170, 170);
+    background: linear-gradient(to right,blue,white);
 }
 
 .cv{
-    background-color: aquamarine;
+    background: linear-gradient(to right,white,black);
+}
+
+.img img{
+    box-shadow: 2px 3px 2px 3px;
 }
