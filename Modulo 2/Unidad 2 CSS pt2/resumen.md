@@ -26,3 +26,16 @@ longitud de la primera línea depende de muchos factores, incluyendo el ancho de
 elemento, el ancho del documento y el tamaño de fuente del texto.
 ::placeholder representa el texto provisional en un elemento < input > o un
 elemento < textarea >.
+
+
+2. Posicionamiento
+Los navegadores crean y posicionan de forma automatica todas las cajas que forman cada pagina HTML, no obstante, CSS permite al diseñador modificar la posición en la que se muestra cada caja.
+Utilizando las propiedades que proporciona CSS para alterar la posición de las cajas es posible realizar efectos muy avanzados y diseñar estructuras de paginas que de otra forma no serian posibles
+
+El estandar de CSS define cinco modelos diferentes para posicionar una caja:
+
+Posicionamiento normal o estatico (static): se trata del posicionamiento que utilizan los navegadores si no se indica lo contrario.
+Posicionamiento relativo (relative): Variante del posicionamiento normal que consiste en posicionar una caja segun el posicionamiento normal y despues desplazarla respecto a su posición original
+Posicionamiento absoluto (aboslute): la posición de una caja se establece de forma absoluta respecto de su elemento contenedor y el resto de elementos de la pagina ignoran la nueva posición del elemento
+Posicionamiento fijo (fixed): variante del psoicionamiento absoluto, que convierte la caja en un elemento inamovible, de forma que su posición en pantalla siempre sera la misma independientemente del resto de elementos y de si el usuario scrollea en el navegador.
+
