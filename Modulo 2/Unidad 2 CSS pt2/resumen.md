@@ -39,3 +39,30 @@ Posicionamiento relativo (relative): Variante del posicionamiento normal que con
 Posicionamiento absoluto (aboslute): la posición de una caja se establece de forma absoluta respecto de su elemento contenedor y el resto de elementos de la pagina ignoran la nueva posición del elemento
 Posicionamiento fijo (fixed): variante del psoicionamiento absoluto, que convierte la caja en un elemento inamovible, de forma que su posición en pantalla siempre sera la misma independientemente del resto de elementos y de si el usuario scrollea en el navegador.
 
+
+3. Flexbox
+Las cajas flexibles, comunmente llamadas flexbox, fueron diseñadas como un modelo unidimensional de layout, y como un metodo que pueda ayudar a distribuir el espacio entre los items de una interfaz y mejorar las capacidades de alineación
+
+Conceptos:
+Para comenzar a utilizar flexbox, lo primero que debemos hacer es conocer algunos de los elementos basicos de este nuevo esquema, que son los siguientes:
+
+contenedor: Existe un elemento padre que es el contenedor, que tendra en su interior muchos items flexibles y adaptables
+item: Cada uno de los hijos flexibles del contenedor
+Eje principal: los contenedores flexibles tendran una orientación principal especifica, por defecto, es en horizontal(una fila)
+Eje secundario: de la misma forma, los contenedores flexibles tendran una orientación secundaria, la cual es perpendicular a la principal.
+
+Propiedad display:
+Controla la forma en la que se muestra el contenedor flexbox
+
+flex: establece un contenedor de items flexible en bloque
+inline-flex: establece un contenedor de items flexibles en linea (el largo del contenedor se ajusta a los items, al contrario del flex, que si los items no llenan el contenedor, queda un espacio vacio)
+
+Propiedad flex-direction:
+row: establece la dirección del eje principal en horizontal
+row-reverse: establece la dirección del eje principal en horizontal (invertido)
+column: establece la dirección del eje principal en vertical
+column-reverse: establece la dirección del eje principal en vertical (invertido)
+
+
+
+
