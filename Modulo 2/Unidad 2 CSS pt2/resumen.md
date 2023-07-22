@@ -63,6 +63,5 @@ row-reverse: establece la dirección del eje principal en horizontal (invertido)
 column: establece la dirección del eje principal en vertical
 column-reverse: establece la dirección del eje principal en vertical (invertido)
 
-test
 
 
