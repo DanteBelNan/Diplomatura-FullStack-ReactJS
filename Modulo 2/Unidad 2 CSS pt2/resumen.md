@@ -63,5 +63,21 @@ row-reverse: establece la dirección del eje principal en horizontal (invertido)
 column: establece la dirección del eje principal en vertical
 column-reverse: establece la dirección del eje principal en vertical (invertido)
 
+Propiedad flex-wrap
+Controla el desbordamiento del contenedor cuando los items superan el ancho del mismo
+nowrap: establece los items en una sola linea (no permite desborde del contenedor)
+wrap: establece los items en modo multilinea (permite que se desborde el contenedor)
+wrap-reverse: establece los items en modo multilinea pero en dirección inversa
 
+Propiedades de alineación de items
+La propiedad justify-content alinea los elementos en el eje principal
+La propiedad align-content alinea los elementos en el eje secundario cuando el contenedor es multilinea
+La propiedad align-items alinea los elementos en el eje secundario cuando el contenedor tiene una linea unica
 
+Estas son algunas de las caracteristicas mas usadas
+flex-start: Los elementos se distribuyen desde el inicio de la linea
+flex-end: Los elementos se distribuyen al final de la linea
+center: Los elementos se centran a lo largo de la linea
+space-between: los elementos se distribuyen uniformemente en la linea, el primer elemento esta al principio de la linea, y el ultimo al final
+space-around: Los elementos se distribuyen uniformemente en la linea con igual espacio a su alrededor. Tenga en cuenta que visualmente los espacios no son iguales, ya que todos los elementos tienen el mismo espacio en ambos lados
+space-evenly: Los elementos se distribuyen de manera que el espacio entre dos elementos (y el espacio hasta los bordes) sea igual
