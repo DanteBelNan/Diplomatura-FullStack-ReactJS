@@ -12,3 +12,4 @@ La función CSS scale() define una transformación que modifica el tamaño de un
 Puede hacer que estos escalados sean distintos, o iguales
 scale(sx); <- Crece tanto en x como en y de la misma forma
 scale(sx, sy) <- Crece de manera diferente en x e y
+
