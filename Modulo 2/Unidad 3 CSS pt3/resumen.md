@@ -13,3 +13,6 @@ Puede hacer que estos escalados sean distintos, o iguales
 scale(sx); <- Crece tanto en x como en y de la misma forma
 scale(sx, sy) <- Crece de manera diferente en x e y
 
+translate
+La función de CSS translate() recoloca un elemento en el eje horizontal y/o vertical, con el atributo
+transform: translate(x,y);
