@@ -35,3 +35,14 @@ En transportes.css aplicamos cambios (verlos)
 
 Paso 8
 Para destacar la sección actual, agregamos la clase activo al elemento que vincula a la pagina actual y le damos estilo al mismo en transportes.css
+
+El ancho del contenido situadio dentro de las etiquetas de header, nav y main habra que limitarlos por un div de clase holder, a excepción de main, a la cual le agregaremos la clase holder sin un div como intermediario y a este le damos un max-width de 960px y un margin de 0 auto
+
+2. Armando la sección Home
+En este tema comenzaremos con el armado de la sección Home. Esta sección cuenta con una imagen principal y un contenedor de dos columnas, donde incluiremos un texto de bienvenida al sitio yun modulo de testimonios
+
+Paso 1
+Situamos los elementos que seran el contenido de la pagina index.html
+
+Paso 2
+En el archivo transporte.css, escribimos la regla para los h2 que se utilizaran en el sitio y el resto de estilos de la pagina
