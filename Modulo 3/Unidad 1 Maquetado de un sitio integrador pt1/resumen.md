@@ -46,3 +46,23 @@ Situamos los elementos que seran el contenido de la pagina index.html
 
 Paso 2
 En el archivo transporte.css, escribimos la regla para los h2 que se utilizaran en el sitio y el resto de estilos de la pagina
+
+3. Armado de la sección Nosotros
+A partir de ahora, esta base que hicimos en index.html la clonaremos y cambiaremos su nombre por cada $seccion.html, en este caso, nosotros.html, acordandonos tambien de cambiar en el nav, el que esta activo
+
+Paso 1
+Situamos los elementos que seran el contenido de la pagina.
+Esta sección cuenta con dos div principales, uno para historia donde incluiremos textos, y otro para staff
+En el div con la clas staff, colocaremos un div con la clase personas que va a contener 5 divs de persona, donde cada uno de ellos tendra una foto, un encabezado y una breve descripción
+
+Paso 2
+En transportes.css aplicamos estilos
+
+4. Armado de la sección Servicios
+
+Paso 1
+Situamos los elementos que serán el contenido de la pagina de servicios.html
+Esta sección cuenta con 4 divs para los servicios que tendran un titulo, una foto y una breve descripción
+
+Paso 2
+Aplicamos los respectivos estilos a la pagina
