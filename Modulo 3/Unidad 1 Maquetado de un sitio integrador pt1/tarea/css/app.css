@@ -52,6 +52,35 @@ nav ul li a.activo{
     background-color: rgb(189, 172, 63) ;
 }
 
+.searchbar{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+}
+
+.searchbar form{
+    display:flex;
+    justify-content: center;
+}
+
+.searchbar form input{
+    width: 200px;
+    border: 0px solid;
+
+}
+
+.searchbar form button{
+    background-color: #33333300;
+    border: 0px solid;
+    cursor: pointer;
+}
+
+nav ul li img{
+    width: 25px;
+    height: 25px;
+}
+
 .holder{
     max-width: 960px;
     margin: 0 auto;
@@ -65,4 +94,36 @@ footer{
     text-align: center;
     padding: 5px 0;
     margin-top: 20px;
+}
+
+.card_grid{
+    display:flex;
+    justify-content: space-between;
+}
+
+.item{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 18%;
+    text-align: center;
+    padding: 13px;
+    box-sizing: border-box;
+}
+
+.item:hover{
+    transform: scale(1.1)
+}
+
+.item img{
+    width: 40%
+}
+
+.item h5{
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.item h6{
+    font-size: 11px;
+    font-style: italic;
 }
