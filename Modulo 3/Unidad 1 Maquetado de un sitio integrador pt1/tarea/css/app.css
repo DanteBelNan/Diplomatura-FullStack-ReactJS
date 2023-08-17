@@ -131,3 +131,67 @@
         font-size: 11px;
         font-style: italic;
     }
+
+    .half_screen{
+        display: inline-block;
+    }
+
+    .top_page{
+        border: 1px solid black;
+        padding: 8%;
+        background-color: rgba(252, 229, 77, 0.74);
+    }
+    
+    .bottom_page{
+        border: 1px solid black;
+        display:flex;
+        justify-content: space-between;
+        background-color: rgba(241, 217, 60, 0.74);
+    }
+
+    .left-bottom{
+        width: 30%;
+    }
+
+    .left-bottom form{
+        margin: 15px;
+
+    }
+
+    .left-bottom form label{
+        display:block;
+        margin-bottom: 5px;
+    }
+
+    .left-bottom form input{
+        border: none;
+        width: 95%;
+        height: 35px;
+    }
+
+    .left-bottom form textarea{
+        width: 95%;
+        padding: 5px;
+        resize:none;
+        border: none;
+    }
+
+    .left-bottom form button{
+        border: none;
+        width: 25%;
+        height: 45px;
+        margin-left: 35%;
+        cursor: pointer;
+    }
+
+    .left-bottom form button:hover{
+        background-color: rgb(78, 78, 78)
+    }
+
+    .left-bottom form button:active{
+        background-color: rgb(39, 39, 39)
+    }
+
+    .right-bottom{
+        width:70%;
+    }
