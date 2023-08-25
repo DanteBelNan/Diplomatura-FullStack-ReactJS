@@ -10,3 +10,7 @@ Luego,armamos la sección de novedades, que posee articulos con Titulo subtitulo
 3. Armamos la sección de contacto.
 Paso 1
 Situamos los elementos que vamos a tener, que son un formulario, con telefono email, nombre y mensaje, y campo de texto cno otras vias de comunicación
+
+
+4. Subida FTP
+Para visualizar correctamente el sitio web es necesario que
