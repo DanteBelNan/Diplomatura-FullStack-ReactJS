@@ -1,0 +1,246 @@
+    body{
+        font-family: 'Open Sans', sans-serif;
+        font-size: 16px;
+        line-height: 20px;
+    }
+    
+    header{
+        background-color: rgb(252,228,77);
+        padding: 16px 0;
+    }
+    
+    header h1{
+        color: black;
+        font-size: 40px;
+        font-weight: 100;
+        font-style: italic;
+        display: inline-block;
+        position: relative;
+        bottom: 35px;
+        margin-left: 10px;
+    
+    }
+    
+    nav{
+        background-color: rgb(214, 196, 75) ;
+    }
+    
+    nav ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+    nav ul li{
+        flex-grow: 1;
+        
+    }
+    
+    nav ul li a{
+        color: white;
+        text-decoration: none;
+        padding: 1% 2%;
+        display: block;
+        text-align: center;
+    }
+    
+    nav ul li a:hover{
+        background-color: rgba(0, 0, 0, 0.479);
+    }
+    
+    nav ul li a.activo{
+        background-color: rgb(189, 172, 63) ;
+    }
+    
+    .searchbar{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid black;
+    }
+    
+    .searchbar form{
+        display:flex;
+        justify-content: center;
+    }
+    
+    .searchbar form input{
+        width: 200px;
+        border: 0px solid;
+    
+    }
+    
+    .searchbar form button{
+        background-color: #33333300;
+        border: 0px solid;
+        cursor: pointer;
+    }
+    
+    nav ul li img{
+        width: 25px;
+        height: 25px;
+    }
+    
+    .holder{
+        max-width: 960px;
+        margin: 0 auto;
+    }
+    
+    
+    footer{
+        background-color: #ccc;
+        clear: both;
+        color: #333;
+        text-align: center;
+        padding: 5px 0;
+        margin-top: 20px;
+    }
+    
+    .card_grid{
+        flex: 1;
+        display:flex;
+        flex-wrap: wrap;
+        justify-content:center;
+    }
+    
+    .item{
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 24%;
+        height: 40%;
+        text-align: center;
+        padding: 13px;
+        box-sizing: border-box;
+        margin: 2%;
+    }
+    
+    .item:hover{
+        transform: scale(1.1)
+    }
+    
+    .item img{
+        width: 40%
+    }
+    
+    .item h5{
+        font-size: 14px;
+        margin-top: 5px;
+    }
+    
+    .item h6{
+        font-size: 11px;
+        font-style: italic;
+    }
+
+    .half_screen{
+        display: inline-block;
+    }
+
+    .top_page{
+        border: 1px solid black;
+        padding: 8%;
+        background-color: rgba(252, 229, 77, 0.74);
+    }
+    
+    .bottom_page{
+        border: 1px solid black;
+        display:flex;
+        justify-content: space-between;
+        background-color: rgba(241, 217, 60, 0.74);
+    }
+
+    .left-bottom{
+        width: 30%;
+    }
+
+    .left-bottom form{
+        margin: 15px;
+
+    }
+
+    .left-bottom form label{
+        display:block;
+        margin-bottom: 5px;
+    }
+
+    .left-bottom form input{
+        border: none;
+        width: 95%;
+        height: 35px;
+    }
+
+    .left-bottom form textarea{
+        width: 95%;
+        padding: 5px;
+        resize:none;
+        border: none;
+    }
+
+    .left-bottom form button{
+        border: none;
+        width: 25%;
+        height: 45px;
+        margin-left: 35%;
+        cursor: pointer;
+    }
+
+    .left-bottom form button:hover{
+        background-color: rgb(78, 78, 78)
+    }
+
+    .left-bottom form button:active{
+        background-color: rgb(39, 39, 39)
+    }
+
+    .right-bottom{
+        width:70%;
+    }
+
+    .admin{
+        display:flex;
+        justify-content: center;
+    }
+    .admin-container{
+        margin: 2%;
+        width: 100%;
+        box-shadow:inset 0 0 10px #ccc;
+        background-color: #a5a4a446;
+        border-radius: 5px;
+        font-size: 20px;
+
+    }
+
+    .admin-container div{
+        display: flex;
+        justify-content: center;
+        margin: 2%;
+        width: 100%;
+    }
+
+    .admin-container div label{
+        width: 15%;
+        margin-right: 2%;
+    }
+
+    .admin-container div input{
+        width: 60%;
+        height: 50px; 
+        border: none;
+    }
+
+    .admin-container div textarea{
+        width: 60%;
+        height: 350px;
+        resize: none;
+        border: none;
+    }
+
+    .admin-container div input[type="submit"]{
+        width: 50%;
+    }
+
+    .admin-container div input[type="submit"]:hover{
+        width: 50%;
+        background-color: #777777;
+        cursor: pointer;
+    }

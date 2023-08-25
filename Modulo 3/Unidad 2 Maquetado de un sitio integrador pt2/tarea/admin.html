@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E Shop Home</title>
+    <link href="css/app.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class=".holder">
+            <img src="img/logo.png" width="100" alt="Ecommerce">
+            <h1> E Shop</h1>
+        </div>
+    </header>
+
+    <nav>
+        <div class=".holder">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a class="activo"href="admin.html">Admin page (later will be hidden)</a></li>
+                <!--<div class="searchbar">
+                    <li>
+                        <form>
+                            <input type="text">
+                            <button type="submit">
+                                <img src="img/lupa.svg">
+                            </button>
+                        </form>
+                    </li>
+                </div>-->
+            </ul>
+        </div>
+    </nav>
+
+    <main class="admin">
+        <div class="admin-container">
+            <form action="" method="POST">
+            <div class="admin-title">
+                <label>Nombre del Item</label>
+                <input type="text" name="titulo">
+            </div>
+
+            <div class="admin-foto">
+                <label>Foto del item</label>
+                <input type="file" name="foto" accept="image/jpeg, image/png">
+            </div>
+
+            <div class="admin-precio">
+                <label>Precio del item</label>
+                <input type="number" name="precio">
+            </div>
+            <div class="admin-descripción">
+                <label>Descripción del item</label>
+                <textarea name="descripcion"></textarea>
+            </div>
+            <div class="admin-submit">
+                <input type="submit" value="Agregar Item">
+            </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p> Diseñado por Dante Beltrán - &copy;</p>
+    </footer>
+</body>
+</html>
