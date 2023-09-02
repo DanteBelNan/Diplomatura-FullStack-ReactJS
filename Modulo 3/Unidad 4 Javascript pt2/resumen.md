@@ -44,3 +44,170 @@ var newDiv = document.createElement('div);
 document.body.appendChild(newDiv);
 
 para eliminar elementos del DOM, debemos en ese elemento (luego de obtenerlo con un getElementById o similar) aplicarle un .remove()
+
+innerHTML e innerText
+Las propiedades de los elementos DOM innerHTML e innerText hacen referencia al contenido de los nodos. Mientras que innerText permite insertar y manipular contenido sencillo dentro de los nodos, innerHTML nos permite incluir codigo HTML más complejo sin la necesidad de crear los elementos a mano
+
+Atributos de los elementos
+Podemos acceder a los atributos de cualquier elemento que hayamos seleccionado simplemente usando el nombre del atributo como propiedad del nodo, Por ejemplo
+const miLink = document.getElementsByTagName('a')[0];
+console.log(miLink.href)
+
+Aqui estamos obteniendo el valor de a donde dirigue el primer elemento de tag 'a'
+
+Tambien, podemos acceder a su css, con style, tomando el ejemplo anterior, accedemos haciendo
+miLink.style
+y le ponemos un .atributo, para decidir cual modificar
+miLink.style.backgroundColor = '#ff00ff'
+
+
+3. Eventos
+JS permite responder a eventos en el DOM mediante el uso de funciones.
+Existen 3 formas distintas de registrar gestores de eventos para un elemento del DOM:
+EventTarget.addEventListener
+
+Esta por ejemplo, tiene la siguiente estructura
+
+miLink.addEventListener('click', function(){
+    console.log("Se clickeo el link");
+}, false);
+
+Tambien, mediante Atributo HTML podemos agregarlo, dandole un onclick al tag, por ejemplo
+< a onclick="console.log("clickeado")>
+Esta forma no se recomendada, ya que incrementa el tamaño html, dificultando su lectura, y ademas resulta complejo incluir multiples instrucciones
+
+Por ultimo, podemos usar el
+miLink.onclick = function(event){
+    console.log("test");
+};
+Pero esta forma solo permite un listener por evento.
+
+
+4. Metodos de array: map, filter y find
+
+Array.map()
+
+Este metodo permite crear un nuevo array con los resultados de la llamada a la función indicada aplicados a cada uno de los elementos
+
+Por ejemplo
+
+const numeros = [1,3,8,20];
+const dobles = numeros.map(function(num) {
+    return num * 2;
+})
+
+console.log(dobles); ([2,6,16,40];)
+
+una forma mas simplificada, usando arrow
+
+const dobles = numeros.map(num => num * 2);
+
+
+Array.filter()
+El metodo filter() crea un nuevo array con todos los elementos que cumplan la condición implementada por la función dada
+
+const numeros = [1,2,3,4,5,6];
+const pares = numeros.filter(num=> num % 2 === 0);
+console.log(pares); ([2,4,6];)
+
+Array.find()
+El metodo find devuelve el valor del primer elemento del array que cumple la función de prueba proporcionada, de lo contrario, devuelve undefined
+const numeros = [1,2,3,4,5,6];
+const encontrado = numeros.find(num => num > 4);
+console.log(encontrado) (5)
+
+
+5. Interpolación de strings
+Las plantillas de cadena de texto (o template strings) son una caracteristica implementada desde ES6 que nos permite, entre otras cosas, interpolar o intercalar variables o expresiones dentro de nuestras cadenas de texto sin tener que recurrir a la concatenación.
+
+Para hacer uso de esta nueva funcionalidad tenemos que rodear nuestros string con la tilde invertida (`) o expresiones que deberan estar contenidas dentro de la estructura ${}
+
+var edad = 18;
+
+var texto = "Tu edad es de ${edad}";
+
+
+6. JSON
+
+JSON o JS Object Notation es un formato de texto utilizado para definir estructuras de objetos y listas complejas. Es ampliamente utilizado para el intercambio de datos entre aplicaciones debido a la simplicidad de su implementación y la facilidad de lectura por parte de las aplicaciones y las personas. Es un subconjunto de la notación de objetos literal de Javascript, por lo cual existen múltiples similitudes entre ambos.
+
+Estructura basica
+{
+    "nombre": "Dante",
+    "edad": 20,
+    "esEstudiante": true;
+    "hobbies": [
+        "futbol",
+        "programación",
+        "League of Legends",
+    ]
+}
+
+En el ejemplo podemos apreciar lo siguiente:
+Todo el objeto esta rodeado por llaves {}.
+Los nombres de las propiedades por comillas dobles ".
+Los tipos de valores son: texto, numero, bool, array o incluso otros objetos
+Las listas o arrays se rodean con corchetes[] y pueden contener cualquiera de los tipos de datos aceptados.
+
+
+En JS podemos definir lo que se denomina un objeto literal usando una sintaxis similar a JSON. Una de las principales diferencias es que no es necesario utilizar comillas dobles en los nombres de propiedades. El ejemplo anterior podria escribirse en JS así:
+
+const Dante = {
+    nombre: "Dante",
+    edad: 20,
+    esEstudiante: true;
+    hobbies: [
+        "futbol",
+        "programación",
+        "League of Legends",
+    ]
+};
+
+console.log(Dante.nombre); ("Dante")
+console.log(Dante.hobbies.length); (3)
+
+
+
+7. Destructing y operador spread
+La desestructuración (destructing) es una tecnica utilizada para extraer y declarar varias variables a la vez. Podemos aplicar esta técnica a arrays, objetos y otros tipos de estructuras nuevas en ES6 como maps y sets.
+
+const colores = ['#ff0000', '#00ff00' , '#0000ff];
+
+En lugar de hacer:
+const rojo = colores[0];
+const verde = colores[1];
+const azul = colores[2];
+
+podemos hacer
+
+const [rojo, verde, azul] = colores;
+
+Con un objeto, por ejemplo, seria así
+
+const pelota = {
+    posicion:{
+        x: 150,
+        y: 150
+    },
+    colorDeRelleno:"tomato",
+    radio: 25,
+}
+
+En vez de hacer:
+const pos = pelota.posicion;
+const radio = pelota.radio;
+const colorDeRelleno = pelota.colorDeRelleno;
+
+podemos hacer:
+const {pos, radio, colorDeRelleno} = pelota;
+
+Operador spread (...) sirve para obtener todas las propiedades de un objeto o los elementos de un array. Es de suma utilidad para cuando necesitamos hacer copias de objetos o listas modificando alguno de los valores o agregando nuevos
+
+const vocales = ['a', 'e', 'i'];
+const vocalesCompletas = [...vocales, 'o', 'u']
+
+console.log(vocales) (['a','e','i'])
+console.log(vocalesCompletas) (['a','e','i','o'])
+
+
+
