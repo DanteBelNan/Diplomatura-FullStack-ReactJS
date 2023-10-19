@@ -11,9 +11,11 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   var username = req.body.username;
+  var pool = require('../bd');
+
   res.render('index', { 
-    title: 'Express con Node',
-    nombre: 'Dante Beltrán',
+    title: `Datos trabajador: `,
+    nombre: `Dante`,
     usuario: username,
     logeado: true
    });
