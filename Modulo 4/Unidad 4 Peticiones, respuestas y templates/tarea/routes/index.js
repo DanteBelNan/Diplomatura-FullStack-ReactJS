@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   var username = req.body.username;
-  var pool = require('../bd');
+  var pool = require('../models/bd');
 
   res.render('index', { 
     title: `Datos trabajador: `,
