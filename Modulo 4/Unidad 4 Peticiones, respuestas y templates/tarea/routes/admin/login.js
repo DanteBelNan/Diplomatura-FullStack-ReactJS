@@ -11,24 +11,35 @@ router.get('/', function(req,res,next){
 
 router.post('/', async (req,res,next) => {
     try{
+        if (!req.session) {
+            console.log("req.session undefined")
+            req.session = {}; // Inicializa req.session si no está definido
+        }
         var usuario = req.body.usuario;
         var password = req.body.password;
 
-        var data = await usuariosModel.getUserByUserNameAndPassword(usuario,password);
+        var data = await usuariosModel.getUserByUserNameAndPassword(usuario,password).then(data => {
+            if(data != undefined){
+                req.session.id_usuario = data["id_usuario"];
+                req.session.usuario = data["usuario"];
+                res.redirect('/admin/novedades');
+            }else{
+                res.render('admin/login', {
+                    layout: 'admin/layout',
+                    error: true
+                });
+            }
+        }).catch(error => {
+            console.log("error");
+            throw error
+        })
 
-        if(data != undefined){
-            req.session.id_usuario = data.id;
-            req.session.nombre = data.usuario;
-            res.redirect('/admin/novedades');
-        }else{
-            res.render('admin/login', {
-                layout: 'admin/layout',
-                error: true
-            });
-        }
+
     } catch (error) {
         console.log(error);
     }
 })
+
+
 
 module.exports = router;
