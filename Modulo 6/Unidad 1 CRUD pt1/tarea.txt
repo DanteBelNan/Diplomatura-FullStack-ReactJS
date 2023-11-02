@@ -1,0 +1,6 @@
+Pensar y escribir en un archivo que sección de tu sitio va a ser dinámica y como plantearias la tabla:
+
+Hola, la sección de mi sitio que sería dinamica, sería en la homepage, todo el display de los articulos en el ecommerce.
+Ya que debe de haber una lectura en la db para mostrarlo
+Y también, los botones de administrador en la navbar, ya que, se renderizaria condicionalmente segun permisos que pueda o no
+tener un usuario, con mas lectura en la DB
