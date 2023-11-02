@@ -6,4 +6,14 @@ async function getNovedades() {
     return rows;
 }
 
-module.exports = {getNovedades}
+async function createNovedad(obj){
+    try{
+        var query = "insert into novedades set ?";
+        var rows= await pool.query(query,[obj])
+    }catch(error){
+        console.log(error);
+        throw error;
+    }
+}
+
+module.exports = {getNovedades, createNovedad}

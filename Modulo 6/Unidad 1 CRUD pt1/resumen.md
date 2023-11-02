@@ -27,3 +27,18 @@ Finalmente, en el archivo view/admin/novedades.hbs agregamos un bucle each de Ha
 2. Alta de novedades
 Paso 1
 En el archivo models/novedades agregamos una nueva función necesaria para dar de alta una novedad
+
+Paso 2
+Modificamos nuestro archivo view/admin/novedades.hbs creando un link a una nueva ruta que utilizaremos para mostrar el formulario donde ingresaremos las novedades.
+
+Paso 3
+En el archivo routes/admin/novedades.js creamos el nuevo manejador de ruta que mostrara el formulario de alta.
+
+Paso 4
+Creamos el archivo view/admin/agregar.hbs con el codigo necesario para el formulario
+
+Paso 5
+Denuevo en routes/admin/novedades.js agregamos el controlador neceasrio para capturar los datos, y llevarlos a la base de datos.
+
+Paso 6
+Agregamos en la vista un condicional para que muestre un mensaje en caso de error
