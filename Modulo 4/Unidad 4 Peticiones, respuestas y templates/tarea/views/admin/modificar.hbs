@@ -1,0 +1,23 @@
+<div class="container" style="margin:100px auto;">
+    {{#if error}}
+        <h5>{{message}}</h5>
+    {{/if}}
+    <div class="row">
+        <div class="col-6 offset-3">
+            <h4>Modificar novedad</h4>
+            <form action="/admin/novedades/,pdofocar" method="post">
+            <input type="hidden" value="{{novedad.id}}" name="id">
+                <div class="mb-3 row">
+                    <input type="text" class="form-control" placeholder="Titulo" name="titulo" value="{{novedad.titulo}}">
+                </div>
+                <div class="mb-3 row">
+                    <textarea type="text" class="form-control" placeholder="Subtitulo" name="subtitulo" value="{{novedad.subtitulo}}"></textarea>
+                </div>
+                <div class="mb-3 row">
+                    <textarea type="text" class="form-control" placeholder="Cuerpo" name="cuerpo" value="{{novedad.cuerpo}}"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>                               
+            </form>
+        </div>
+    </div>
+</div>
