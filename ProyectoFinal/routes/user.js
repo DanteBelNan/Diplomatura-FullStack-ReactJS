@@ -22,9 +22,9 @@ router.post('/', async (req,res,next) => {
             console.log("req.session undefined")
             req.session = {}; // Inicializa req.session si no está definido
         }
-        var usuario = req.body.usuario;
+        var usuario = req.body.username;
         var password = req.body.password;
-
+        console.log(usuario, password)
         var data = await usuariosModel.getUserByUserNameAndPassword(usuario,password).then(data => {
             if(data != undefined){
                 req.session.id_usuario = data["id_usuario"];
