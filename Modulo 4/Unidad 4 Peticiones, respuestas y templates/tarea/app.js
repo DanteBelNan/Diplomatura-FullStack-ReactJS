@@ -48,7 +48,9 @@ app.use('/users', usersRouter);
 
 app.use('/admin/login', loginRouter);
 app.use('/admin/novedades', secured, novedadesRouter);
-app.use('/admin/novedades/agregar', secured, novedadesRouter)
+app.use('/admin/novedades/agregar', secured, novedadesRouter);
+app.use('/admin/novedades/eliminar/:id', secured, novedadesRouter);
+app.use('/admin/novedades/modificar/:id', secured, novedadesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

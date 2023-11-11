@@ -35,14 +35,14 @@ secured = async(req,res,next) => {
     if(req.session.id_usuario){
       next();
     }else{
-      res.redirect('/admin/login');
+      res.redirect('/login');
     }
   }catch(error){
     console.log(error);
   }
 }
 
-app.use('/', indexRouter);
+app.use('/home', secured, indexRouter);
 app.use('/login', loginRouter);
 
 app.use('/admin/novedades', secured, novedadesRouter);

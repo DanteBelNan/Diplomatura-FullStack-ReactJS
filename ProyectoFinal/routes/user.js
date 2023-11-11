@@ -1,19 +1,18 @@
 var express = require('express');
 var router = express.Router();
 var usuariosModel = require('../models/usuarios');
+var rolesModel = require('../models/roles');
 
 
 router.get('/', function(req,res,next){
     res.render('login', {
-        layout: 'layout',
+
     });
 });
 
 router.get('/logout', function (req,res,next){
     req.session.destroy();
-    res.render('login', {
-        layout: 'layout',
-    });
+    res.redirect('/login')
 })
 
 router.post('/', async (req,res,next) => {
@@ -24,15 +23,15 @@ router.post('/', async (req,res,next) => {
         }
         var usuario = req.body.username;
         var password = req.body.password;
-        console.log(usuario, password)
+        var idRol
         var data = await usuariosModel.getUserByUserNameAndPassword(usuario,password).then(data => {
             if(data != undefined){
-                req.session.id_usuario = data["id_usuario"];
+                req.session.id_usuario = data["idUsuario"];
                 req.session.username = data["username"];
-                res.redirect('/');
+                idRol = data["idRol"]
+                
             }else{
                 res.render('login', {
-                    layout: 'layout',
                     error: true
                 });
             }
@@ -40,7 +39,10 @@ router.post('/', async (req,res,next) => {
             console.log("error");
             throw error
         })
-
+        var nombreId = await rolesModel.getRolById(idRol).then(nombreId => {
+            req.session.rol = nombreId["nombre"];
+        })
+        res.redirect('/home');
 
     } catch (error) {
         console.log(error);
