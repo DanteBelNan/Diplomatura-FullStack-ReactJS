@@ -5,7 +5,9 @@ var rolesModel = require('../models/roles');
 
 
 router.get('/', function(req,res,next){
-    res.render('login');
+    res.render('login',{
+        layout: 'layout',
+    });
 });
 
 router.get('/logout', function (req,res,next){
@@ -30,6 +32,7 @@ router.post('/', async (req,res,next) => {
                 
             }else{
                 res.render('login', {
+                    layout: 'layout',
                     error: true
                 });
             }
