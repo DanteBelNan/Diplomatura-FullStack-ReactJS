@@ -5,9 +5,7 @@ var rolesModel = require('../models/roles');
 
 
 router.get('/', function(req,res,next){
-    res.render('login', {
-
-    });
+    res.render('login');
 });
 
 router.get('/logout', function (req,res,next){
