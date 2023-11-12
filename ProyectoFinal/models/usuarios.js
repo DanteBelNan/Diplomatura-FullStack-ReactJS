@@ -41,4 +41,15 @@ async function createUser(obj){
     }
 }
 
-module.exports = { getUserByUserNameAndPassword, createUser, getIdByName, changePasswordById}
+async function deleteUser(id){
+    try{
+        var query = "delete from usuarios where idUsuario = ?";
+        var rows = await pool.query(query, [id]);
+        return rows;
+    }catch(error){
+        console.log(error);
+        throw error;
+    }
+}
+
+module.exports = { getUserByUserNameAndPassword, createUser, getIdByName, changePasswordById, deleteUser}

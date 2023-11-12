@@ -3,22 +3,11 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { 
-    title: 'Express con Node',
-    nombre: 'Dante Beltrán'
-   });
+  res.render('index', {idUsuario: req.session.id_usuario});
 });
 
 router.post('/', function(req, res, next) {
-  var username = req.body.username;
-  var pool = require('../models/bd');
-
-  res.render('index', { 
-    title: `Datos trabajador: `,
-    nombre: `Dante`,
-    usuario: username,
-    logeado: true
-   });
+  res.render('index');
 });
 
 module.exports = router;

@@ -2,3 +2,9 @@
 
 <!--  Aca debemos de tener la home page -->
 
+<h1>{{idUsuario}}</h1>
+
+<form action="/login/deleteUser" method="post">
+    <input type="hidden" value="{{idUsuario}}" name="id">
+    <button type="submit" class="btn btn-danger">Remover cuenta</button>
+</form>
