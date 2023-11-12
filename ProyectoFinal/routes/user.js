@@ -50,6 +50,55 @@ router.post('/', async (req,res,next) => {
     }
 })
 
+router.get('/register', async(req,res,next) => {
+    res.render('register',{
+        layout: 'layout',
+    });
+})
+
+router.post('/register', async (req,res,next) => {
+    try{
+        if (!req.session) {
+            req.session = {}; // Inicializa req.session si no está definido
+        }
+
+        if(req.body.username == "" || req.body.password ==  "" || req.body.password2 == ""){
+            res.render('register', {
+                layout: 'layout',
+                error: true,
+                message: "Todos los campos deben de estar llenos"
+            });
+        }
+        console.log("Primera validación pasada")
+        if(req.body.password != req.body.password2 ){
+            res.render('register', {
+                layout: 'layout',
+                error: true,
+                message: "Las contraseñas deben de ser iguales"
+            });
+        }
+        var usuario = req.body.username;
+        var password = req.body.password;
+        var password2 = req.body.password2;
+        var createdUser = {
+            username: req.body.username,
+            password: req.body.password,
+            idRol: 1 //rol de usuario
+          };
+        var newUser = await usuariosModel.createUser(createdUser).then(newUser => {
+            res.render('login', {
+                layout: 'layout',
+                register: true,
+                RegisterMessage: "Usuario registrado exitosamente"
+            })
+        })
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+
+
 
 
 module.exports = router;
