@@ -24,6 +24,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+var fileUpload = require('express-fileupload');
+
+app.use(fileUpload({
+  useTempFiles: true,
+  tempFileDir: '/tmp/'
+}));
+
 app.use(session({
     secret: 'PW2021awqyeudj',
     cookie: { maxAge: null},
