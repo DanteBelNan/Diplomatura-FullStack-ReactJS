@@ -55,3 +55,17 @@ En caso de que se hayan enviado archivos, buscaremos uno llamado imagen y utiliz
 
 
 Este proceso hace que la variable img_id que enviamos junto con el resto de los campos a la basen de datos, solo contenga un valor (el id publico que cloudinary asigno a nuestra imagen y que necesitaremos mas adelante para obtenerla y manipularla) en caso de que se haya subido una imagen, caso contrario enviamos un valor vacio y la novedad queda sin imagen.
+
+
+
+Mostrar imagenes en el listado de administrador
+
+Paso 1
+
+En el archivo routes/admin/novedades.js agregamos la logica necesaria para enviar junto con cada novedad la imagen que se haya subido en caso de haber una o nada en caso de no tener.
+
+Para esto utilizamos el metodo image de cloudinary que nos devuelve una etiqueta img html completa
+
+Paso 2
+
+Finalmente, en el archivo view/admin/novedades.hbs agregamos en el bucle each la variable de la imagen con triple llave debido a que puede contener HTML
