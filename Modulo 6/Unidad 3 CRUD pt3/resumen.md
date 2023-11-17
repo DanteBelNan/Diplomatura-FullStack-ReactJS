@@ -132,3 +132,13 @@ Para poder probar nuestra API podemos acceder a la ruta http://localhost:3000/ap
 Una alternativa utilizada cuando desarrollamos APIs con muchos endpoints es Postman, esta se descarga aqui:
 
 https://www.postman.com/downloads/
+
+
+Manipulación de imagenes:
+
+En nuestra API estamos devolviendo el id que nos da cloudinary, si queremos devolver la url de dicha imagen solamente debemos incorporar la libreria Cloudinary a nuestro codigo yconsultar las urls de las imagenes de las cuales tenemos el ID.
+
+Nosotros aplicamos un recorte crop del tipo fill que redimensiona la imagen y elimina los excedentes utilizando tamaños proporcionados
+
+
+Los nombres de las otras manipulaciones o efectos que son aplicables los podemos ver en la docu de Cloudinary
