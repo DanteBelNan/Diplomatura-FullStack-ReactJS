@@ -142,3 +142,39 @@ Nosotros aplicamos un recorte crop del tipo fill que redimensiona la imagen y el
 
 
 Los nombres de las otras manipulaciones o efectos que son aplicables los podemos ver en la docu de Cloudinary
+
+
+3. Consumo de API con React
+
+
+Ahora vamos a consumir la api que acabamos de crear utilizando el sitio que estamos desarrollando en React, para eso instalamos la libreria axios, parados dentro de nuestra carpeta frontend con el siguiente comando
+
+Y creamos un componente que muestre una Novedad
+
+
+Podemos ver en el componente que tenemos un dangerouslySetInnerHTML, esta propiedad cumple la función de mostrar el codigo HTML tal cual venga, lo cual en ciertos casos puede ser inseguro, de esta forma, react se asegura de que sabemos el riesgo que tomamos, esta propiedad recibe un parametro llamado __html que es el contenido a mostrar
+
+
+A continuación, en el archivo pages/NovedadesPage.js vamos a importar axios y el componente que recien creamos, Vamos a hacer uso de otras funcionalidades de React como useEffect y useState para controlar la carga de las noticias y la información que vea el usuario de nuestro sitio.
+
+
+En este caso particular hacemos uso de useEffect para ejecutar codigo al momento de que nuestro componente NovedadesPage sea incorporado al DOM, pero antes de que el usuario lo vea.
+
+le pasamos como parametros una función anonima con el codigo que queremos ejecutar y un array de dependencias, que al estar vacio hace que el codigo solo corra cuando necesitamos.
+
+Dentro de la función definimos una segunda función para saltar la limitación de no poder usar codigo asincronico de un hook de react e inmediatamente la llamamos. Esta función es la encargada de llamar a la API utilizando axios y manipular la variable de loading y novedades
+
+
+useState es un hook de react que permite manipular de forma sencilla el estado dentro de componentes funcionales que previamente no podian contar con esta funcionalidad. En nuestro caso utilizamos 2 variables y sus correspondientes setters:
+
+loading y setLoading. y novedades y setNovedades.
+
+En ambos casos definimos un valor inicial para estas variables, false para loading y un array vacio para novedades.
+
+Al iniciar la carga dentro de useEffect seteamos el valor de la variable loading a true, lo que hara que el usuario vea el texto "cargando...". Al llegar la respuesta de nuestra consulta a la API cambia su estado y loading es false, por lo que renderiza todos los datos.
+
+Toda la logica esta implementada mediante el uso del renderizado condicional utilizando un operador ternario que nos permite cambiar el contenido mostrado de acuerdo al valor de la variable loading y por ultimo utilizamos un map sobre el array de novedades para duplicar nuestro componente NovedadItem tantas veces como noticias hayamos recibido.
+
+Es muy importante recordar al duplicar elementos en React utilizar la propiedad key.
+
+la cual permite a React identificar al elemento de forma rapida
