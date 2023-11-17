@@ -71,6 +71,11 @@ router.post('/agregar', async(req,res,next) =>{
 
 router.get('/eliminar/:id', async (req, res, next) => {
     var id = req.params.id;
+    let novedad = await novedadesModel.getNovedad(id);
+    if(novedad.img_id){
+        await (destroy(novedad.img_id));
+    }
+
     await novedadesModel.deleteNovedad(id);
     res.redirect('/admin/novedades')
 })

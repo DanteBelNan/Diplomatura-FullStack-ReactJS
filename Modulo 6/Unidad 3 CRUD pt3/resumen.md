@@ -98,3 +98,10 @@ Al finalizar todo este proceso el valor de img_id contendrá una de tres opcione
 Paso 3
 
 En la variable obj agregamos img_id para enviarlo a la base de datos junto con el resto de los campos
+
+
+Para eliminar una imagen
+
+Paso 1
+
+En el archivo routes/admin/novedades.js dentro del controlador de la ruta que elimina las novedades vamos a verificar primero si la novedad tiene una imagen, en cuyo caso, como vamos a eliminar la novedad de nuestra base de datos, la eliminamos tambien de cloudinary con el metodo destroy.
