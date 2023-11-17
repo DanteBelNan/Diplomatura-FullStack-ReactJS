@@ -53,10 +53,7 @@ Esta es la función que realiza express-fileupload; agregar en la petición el o
 
 En caso de que se hayan enviado archivos, buscaremos uno llamado imagen y utilizaremos la ruta temporal donde fue almacenado en nuestra computadora como archivo de origen para enviar el uploader de Cloudinary. Por ultimo, al completarse la subida a cloudinary guardamos el valor de la propiedad public_id en nuestra variable img_id.
 
-
 Este proceso hace que la variable img_id que enviamos junto con el resto de los campos a la basen de datos, solo contenga un valor (el id publico que cloudinary asigno a nuestra imagen y que necesitaremos mas adelante para obtenerla y manipularla) en caso de que se haya subido una imagen, caso contrario enviamos un valor vacio y la novedad queda sin imagen.
-
-
 
 Mostrar imagenes en el listado de administrador
 
@@ -70,16 +67,13 @@ Paso 2
 
 Finalmente, en el archivo view/admin/novedades.hbs agregamos en el bucle each la variable de la imagen con triple llave debido a que puede contener HTML
 
-
 Modificar una novedad con imagen
-
 
 Paso 1
 
 Modificamos views/admin/modificar.hbs e incluimos un input para enviar la imagen. A diferencia del formulario de agregar, incluimos una de tipo checkbox para permitir eliminar la imagen actual
 
 Es neceasrio tambien que incluyamos un input del tipo hidden para enviar junto con el formulario, el id de la imagen actual si la hay
-
 
 Paso 2
 
@@ -99,16 +93,42 @@ Paso 3
 
 En la variable obj agregamos img_id para enviarlo a la base de datos junto con el resto de los campos
 
-
 Para eliminar una imagen
 
 Paso 1
 
 En el archivo routes/admin/novedades.js dentro del controlador de la ruta que elimina las novedades vamos a verificar primero si la novedad tiene una imagen, en cuyo caso, como vamos a eliminar la novedad de nuestra base de datos, la eliminamos tambien de cloudinary con el metodo destroy.
 
-
 2. Creación de API Rest
-Los API Rest son interfaces que las aplicaciones exponen para permitir la comunicación con otras y/o el consumo de datos controlado por parte de terceros.
-Muchas aplicaciones exponen sus servicios mediante la implementación de APIs Rest. permitiendonos utilizar funcionalidades o acceder a datos a los cuales de otra forma sería imposible acceder.
+   Los API Rest son interfaces que las aplicaciones exponen para permitir la comunicación con otras y/o el consumo de datos controlado por parte de terceros.
+   Muchas aplicaciones exponen sus servicios mediante la implementación de APIs Rest. permitiendonos utilizar funcionalidades o acceder a datos a los cuales de otra forma sería imposible acceder.
 
 En el caso de nuestra aplicación crearemos un endpoint (asi se denomina cada URL que compone una API Rest) para exponer las novedades que se hayan cargado en la base de datos mediante el administrador. Esta sencilla API permitirá que nuestro sitio o cualquier otra aplicación (podría ser otro sitio o una aplicación de escritorio o para celulares) consuma nuestros datos
+
+
+CORS
+
+CORS (Cross-Origin Resource Sharing) es un mecanismo que utiliza cabeceras HTTP adicionales para permitir que un sitio obtenga permiso para acceder a recursos seleccionados desde un servidor en un origen distinto (dominio) al que pertenece. Es una practica de seguridad comun para rpevenir el uso no autorizado de recursos.
+
+
+Instalamos la dependencia necesaria con el siguiente comando
+
+npm i cors
+
+Luego, importamos la nueva dependencia en nuestro archivo app.js
+
+Para una mejor organización, vamos a separar todos los controladores para las rutas de nuestra API, en un nuevo router de express, para eso creamos un archivo nuevo routes/api.js y lo importamos en nuestro archivo app.js
+
+Nuestro router se encargara de todas las rutas que empiezan con Api e implementa a modo de middleware la libreria de cors que instalamos. Esto permitira que cualquier ruta de nuestra API pueda ser consumida desde dominios diferentes al que aloje a nuestra aplicación.
+
+En api.js podemos devolver resultados en formato json.
+
+
+Devolver los datos de nuestra base de datos mediante la API, como se puede apreciar, es muy sencillo, solo debemos devolver como respuesta JSON el listado de novedades que nuestro modelo ha generado.
+
+Para poder probar nuestra API podemos acceder a la ruta http://localhost:3000/api/novedades utilizando nuestro navegador podemos ver el contenido en un formato json
+
+
+Una alternativa utilizada cuando desarrollamos APIs con muchos endpoints es Postman, esta se descarga aqui:
+
+https://www.postman.com/downloads/
