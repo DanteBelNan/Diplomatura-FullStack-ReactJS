@@ -69,3 +69,32 @@ Para esto utilizamos el metodo image de cloudinary que nos devuelve una etiqueta
 Paso 2
 
 Finalmente, en el archivo view/admin/novedades.hbs agregamos en el bucle each la variable de la imagen con triple llave debido a que puede contener HTML
+
+
+Modificar una novedad con imagen
+
+
+Paso 1
+
+Modificamos views/admin/modificar.hbs e incluimos un input para enviar la imagen. A diferencia del formulario de agregar, incluimos una de tipo checkbox para permitir eliminar la imagen actual
+
+Es neceasrio tambien que incluyamos un input del tipo hidden para enviar junto con el formulario, el id de la imagen actual si la hay
+
+
+Paso 2
+
+En el archivo routes/admin/novedades.js agregamos el metodo destroy de cloudinary que nos permite eliminar imagenes del servicio. Al igual que hicimos con el uploader utilizamos la libreria util para convertirlo en un metodo asincrono
+
+El codigo para manejar la modificación de la imagen en la novedad puede parecer complejo a primera vista pero no lo es. Primero inicializamos la variable img_id con el valor que haya venido del input hidden y la variable borrar_img_vieja que usaremos para saber si tenemos que llamar al metodo destroy. De esta forma pase lo que pase, al enviar el valor a la base de datos preservamos el valor original.
+
+A continuación, revisamos si el usuario decidió eliminar la imagen novedad, en cuyo caso, asignamos null a img_id para limpiar el valor de la base de datos.
+
+Si el usuario no tildó la casilla para eliminar la imagen actual, repetimos el proceso que hicimos en agregar para ver si se envio una imagen junto con el formulario.
+
+En el ultimo paso, revisamos el valor de borrar_img vieja y en caso de ser verdadero, ya sea porque el usuario tildo la casilla o subio una imagen nueva. llamamos al metodo destroy para eliminar la imagen antigua de cloudinary.
+
+Al finalizar todo este proceso el valor de img_id contendrá una de tres opciones segun el camino que haya seguido el codigo, null, valor de input hidden o el id publico de una nueva imagen.
+
+Paso 3
+
+En la variable obj agregamos img_id para enviarlo a la base de datos junto con el resto de los campos
