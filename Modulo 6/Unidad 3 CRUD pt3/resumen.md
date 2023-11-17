@@ -105,3 +105,10 @@ Para eliminar una imagen
 Paso 1
 
 En el archivo routes/admin/novedades.js dentro del controlador de la ruta que elimina las novedades vamos a verificar primero si la novedad tiene una imagen, en cuyo caso, como vamos a eliminar la novedad de nuestra base de datos, la eliminamos tambien de cloudinary con el metodo destroy.
+
+
+2. Creación de API Rest
+Los API Rest son interfaces que las aplicaciones exponen para permitir la comunicación con otras y/o el consumo de datos controlado por parte de terceros.
+Muchas aplicaciones exponen sus servicios mediante la implementación de APIs Rest. permitiendonos utilizar funcionalidades o acceder a datos a los cuales de otra forma sería imposible acceder.
+
+En el caso de nuestra aplicación crearemos un endpoint (asi se denomina cada URL que compone una API Rest) para exponer las novedades que se hayan cargado en la base de datos mediante el administrador. Esta sencilla API permitirá que nuestro sitio o cualquier otra aplicación (podría ser otro sitio o una aplicación de escritorio o para celulares) consuma nuestros datos
