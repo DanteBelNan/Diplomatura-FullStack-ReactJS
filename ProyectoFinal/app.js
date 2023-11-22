@@ -9,7 +9,9 @@ require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/user');
+var adminRouter = require('./routes/admin');
 const session = require('express-session');
+var fileUpload = require('express-fileupload');
 
 var app = express();
 
@@ -30,9 +32,21 @@ app.use(session({
     saveUninitialized: true
 }))
 
+app.use(fileUpload({
+  useTempFiles: true,
+  tempFileDir: '/tmp/'
+}));
+
+const hbs = require('hbs'); //creamos el comparador igual del helper
+hbs.registerHelper('eq', function (a, b, options) {
+  return a === b ? options.fn(this) : options.inverse(this);
+});
+
 secured = async(req,res,next) => {
   try{
     if(req.session.id_usuario){
+      res.locals.id_usuario = req.session.id_usuario;
+      res.locals.rol = req.session.rol;
       next();
     }else{
       res.redirect('/login');
@@ -42,8 +56,19 @@ secured = async(req,res,next) => {
   }
 }
 
+isAdmin = async(req,res,next) => {
+  if(res.locals.rol == 'admin' || req.session.rol == 'admin'){
+    next();
+  }else{
+    history.back();
+  }
+}
+
+
+
 app.use('/home', secured, indexRouter);
 app.use('/login', loginRouter);
+app.use('/admin', secured, isAdmin, adminRouter);
 
 
 // catch 404 and forward to error handler
