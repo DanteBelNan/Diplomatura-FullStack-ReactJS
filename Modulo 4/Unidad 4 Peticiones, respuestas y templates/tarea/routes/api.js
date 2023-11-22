@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var novedadesModel = require('./../models/novedades');
+var novedadesModel = require('../../../../ProyectoFinal/models/novedades');
 var cloudinary = require('cloudinary').v2;
 
 router.get('/novedades', async function (req,res, next) {
