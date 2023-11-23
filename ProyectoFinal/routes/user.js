@@ -5,7 +5,7 @@ var rolesModel = require('../models/roles');
 
 
 router.get('/', function(req,res,next){
-    res.render('login',{
+    res.render('login/login',{
         layout: 'layout',
     });
 });
@@ -31,7 +31,7 @@ router.post('/', async (req,res,next) => {
                 idRol = data["idRol"]
                 
             }else{
-                res.render('login', {
+                res.render('login/login', {
                     layout: 'layout',
                     error: true
                 });
@@ -51,7 +51,7 @@ router.post('/', async (req,res,next) => {
 })
 
 router.get('/register', async(req,res,next) => {
-    res.render('register',{
+    res.render('login/register',{
         layout: 'layout',
     });
 })
@@ -63,14 +63,14 @@ router.post('/register', async (req,res,next) => {
         }
 
         if(req.body.username == "" || req.body.password ==  "" || req.body.password2 == ""){
-            res.render('register', {
+            res.render('login/register', {
                 layout: 'layout',
                 error: true,
                 message: "Todos los campos deben de estar llenos"
             });
         }
         if(req.body.password != req.body.password2 ){
-            res.render('register', {
+            res.render('login/register', {
                 layout: 'layout',
                 error: true,
                 message: "Las contraseñas deben de ser iguales"
@@ -85,7 +85,7 @@ router.post('/register', async (req,res,next) => {
             idRol: 1 //rol de usuario
           };
         var newUser = await usuariosModel.createUser(createdUser).then(newUser => {
-            res.render('login', {
+            res.render('login/login', {
                 layout: 'layout',
                 register: true,
                 RegisterMessage: "Usuario registrado exitosamente"
@@ -97,20 +97,20 @@ router.post('/register', async (req,res,next) => {
 })
 
 router.get('/forgotPassword', async(req,res,next) => {
-    res.render('forgotPassword',{
+    res.render('login/forgotPassword',{
         layout: 'layout',
     });
 })
 
 router.get('/forgotPassword', async(req,res,next) => {
-    res.render('forgotPassword',{
+    res.render('login/forgotPassword',{
         layout: 'layout',
     });
 })
 
 router.post('/forgotPassword', async(req,res,next) => {
     if(req.body.username == ""){
-        res.render('forgotPassword', {
+        res.render('login/forgotPassword', {
             layout: 'layout',
             error: true,
             message: "Todos los campos deben de estar llenos"
@@ -118,13 +118,13 @@ router.post('/forgotPassword', async(req,res,next) => {
     }
     var id = await usuariosModel.getIdByName(req.body.username).then(id => {
         try{
-            res.render('forgotPassword',{
+            res.render('login/forgotPassword',{
                 layout: 'layout',
                 confirm: true,
                 idUsuario: id["idUsuario"]
             });
         }catch(error){
-            res.render('forgotPassword', {
+            res.render('login/forgotPassword', {
                 layout: 'layout',
                 error: true,
                 message: "Ese usuario no existe"
@@ -135,21 +135,21 @@ router.post('/forgotPassword', async(req,res,next) => {
 
 router.post('/forgotPassword/confirm', async(req,res,next) => {
     if(req.body.password ==  "" || req.body.password2 == ""){
-        res.render('forgotPassword', {
+        res.render('login/forgotPassword', {
             layout: 'layout',
             error: true,
             message: "Todos los campos deben de estar llenos"
         });
     }
     if(req.body.password != req.body.password2 ){
-        res.render('forgotPassword', {
+        res.render('login/forgotPassword', {
             layout: 'layout',
             error: true,
             message: "Las contraseñas deben de ser iguales"
         });
     }
     var newPassword = await usuariosModel.changePasswordById(req.body.id, req.body.password).then(newPassword => {
-        res.render('login', {
+        res.render('login/login', {
             layout: 'layout',
             register: true,
             RegisterMessage: "Contraseña cambiada exitosamente"
