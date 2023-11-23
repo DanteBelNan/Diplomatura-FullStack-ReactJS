@@ -8,6 +8,18 @@
   </head>
   <body>
 
+    {{#if error}}
+      <div class="alert alert-danger" role="alert">
+        {{messageError}}
+      </div>
+    {{/if}}
+
+    {{#if success}}
+      <div class="alert alert-success" role="alert">
+        {{messageSuccess}}
+      </div>
+    {{/if}}
+
     {{#if id_usuario}}
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/home">Inicio</a>
@@ -17,7 +29,7 @@
             <!-- Puedes agregar más elementos a la izquierda si lo necesitas -->
 
             {{#eq rol 'admin'}}
-              <a class="btn btn-outline-primary my-2 my-sm-0" href="/admin/agregar">Crear Articulo</a>
+              <a class="btn btn-outline-primary my-2 my-sm-0" href="/admin/agregarArticulo">Crear Articulo</a>
             {{/eq}}
             <li class="nav-item">
               <a class="btn btn-outline-danger my-2 my-sm-0" href="/login/logout">Logout</a>

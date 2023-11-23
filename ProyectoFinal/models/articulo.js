@@ -13,11 +13,24 @@ async function getArticulo(id){
 async function getArticulos(){
     try {
         var query = "select * from articulo";
-        var rows = await pool.query(query, [id]);
-        return rows[0];
+        var rows = await pool.query(query);
+        if(rows == null){
+            throw new Error("No se encontraron articulos")
+        }
+        return rows;
     }catch(error){
         console.log(error);
     }
 }
 
-module.exports = { getArticulo, getArticulos }
+async function createArticulo(obj){
+    try{
+        var query = "insert into articulo set ?";
+        var rows = await pool.query(query,[obj]);
+        return rows[0];
+    }catch(error){
+        throw error;
+    }
+}
+
+module.exports = { getArticulo, getArticulos, createArticulo }
