@@ -29,10 +29,8 @@ router.post('/agregarArticulo', async(req, res, next) => {
                 img_id
             }
             await articuloModel.createArticulo(obj);
-            res.render('index', {
-                layout: 'layout', //Aca hay que hacer despues que nos redirija a la pestaña de visualizar un articulo
-                success: true, messageSuccess: 'Articulo creado exitosamente'
-            });
+            res.redirect('/home');
+
         }
     }catch(error){
         console.log(error);
@@ -88,15 +86,17 @@ router.post('/modificarArticulo/:id',async (req, res, next) => {
         }
 
         await articuloModel.modificarArticulo(obj, req.params.id);
-        res.render('index', {
+        res.render('articulo/modificar', {
             layout: 'layout', 
+            articulo: obj,
             success: true, messageSuccess: 'Articulo modificado exitosamente'
         });
     }catch(error){
         console.log(error);
-        res.render('index', {
-            layout: 'layout',
-            error: true, messageError: 'No se modifico el articulo'
+        res.render('articulo/modificar', {
+            layout: 'layout', 
+            articulo: obj,
+            error: true, messageError: 'No se pudo modificar el articulo'
         });
     }
 });
@@ -109,15 +109,13 @@ router.post('/eliminarArticulo/:id',async (req, res, next) => {
             await (destroy(articulo.img_id));
         }
         await articuloModel.deleteArticulo(id);
-        res.render('index', {
-            layout: 'layout', 
-            success: true, messageSuccess: 'Articulo eliminado exitosamente'
-        });
+        res.redirect('/home');
     }catch(error){
         console.log(error);
-        res.render('index', {
-            layout: 'layout',
-            error: true, messageError: 'No se elimino el articulo'
+        res.render('articulo/modificar', {
+            layout: 'layout', 
+            articulo,
+            error: true, messageError: 'No se pudo eliminar el articulo'
         });
     };
 });
