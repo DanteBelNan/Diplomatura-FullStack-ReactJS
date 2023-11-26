@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var articuloModel = require('../models/articulo');
+var usuariosModel = require('../models/usuarios');
+var rolesModel = require('../models/roles');
 var util = require('util');
 var cloudinary = require('cloudinary').v2;
 const uploader = util.promisify(cloudinary.uploader.upload);
@@ -51,7 +53,7 @@ router.post('/', function(req, res, next) {
 });
 
 
-router.get('/:id', async (req, res, next) => {
+router.get('/articulo/:id', async (req, res, next) => {
   try{
     var id = req.params.id;
   
@@ -76,6 +78,24 @@ router.get('/:id', async (req, res, next) => {
       articulo: null,
       error: true,
       message: error.message
+    });
+  }
+});
+
+router.get('/profile',async function(req, res, next){
+  
+
+  try{
+    let profile = await usuariosModel.getUserById(res.locals.id_usuario);
+    res.render('profile', {
+      layout: 'layout',
+      profile
+    });
+
+  }catch(error){
+    res.render('profile', {
+      layout: 'layout',
+      error: true, messageError: error.message
     });
   }
 });

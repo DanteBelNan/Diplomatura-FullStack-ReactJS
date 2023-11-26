@@ -11,6 +11,18 @@ async function getUserByUserNameAndPassword(user, password){
     }
 }
 
+async function getUserById(Id){
+    try {
+        var query = "select u.idUsuario as idUsuario, u.username as username, u.password as password, r.nombre as rol from usuarios as u " + 
+        "inner join rol as r on r.idRol = u.idRol " +
+        "where idUsuario = ? ";
+        var rows = await pool.query(query, Id);
+        return rows[0];
+    }catch(error){
+        console.log(error);
+    }
+}
+
 async function getIdByName(user){
     try {
         var query = "select idUsuario from usuarios where username = ? and idRol = 1 limit 1";
@@ -52,4 +64,4 @@ async function deleteUser(id){
     }
 }
 
-module.exports = { getUserByUserNameAndPassword, createUser, getIdByName, changePasswordById, deleteUser}
+module.exports = { getUserByUserNameAndPassword, createUser, getIdByName, changePasswordById, deleteUser, getUserById}
