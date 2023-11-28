@@ -10,6 +10,7 @@ require('dotenv').config();
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
+var apiRouter = require('./routes/api');
 const session = require('express-session');
 var fileUpload = require('express-fileupload');
 
@@ -69,6 +70,7 @@ isAdmin = async(req,res,next) => {
 app.use('/home', secured, indexRouter);
 app.use('/login', loginRouter);
 app.use('/admin', secured, isAdmin, adminRouter);
+app.use('/api',cors(), apiRouter);
 
 
 // catch 404 and forward to error handler
