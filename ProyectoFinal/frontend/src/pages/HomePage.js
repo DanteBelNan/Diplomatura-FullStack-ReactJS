@@ -20,7 +20,7 @@ const HomePage = (props) => {
         <div class="container mt-5">
         <div class="row">
             { loading ? (<p>Cargando...</p>) : (
-                    articulos.map(item => <Card id={item.id} title={item.titulo} descripcion={item.descripcion}
+                    articulos.map(item => <Card id={item.id} titulo={item.titulo} descripcion={item.descripcion}
                         imagen={item.imagen} precio={item.precio}/>)
             )}
         </div>

@@ -9,7 +9,6 @@ const Card = (props) => {
             <h5 class="card-title">{titulo}</h5>
             <NavLink to="home/articulo/{{id}}" className="btn btn-link">
               <i class="bi bi-three-dots"></i>
-              test
             </NavLink>
           </div>
           <div class="card-body text-center">
