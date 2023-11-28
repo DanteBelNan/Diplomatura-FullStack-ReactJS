@@ -4,14 +4,14 @@ const ArticuloPage = (props) => {
         <div class="row justify-content-center align-items-center vh-100">
           <div class="card col-md-6">
             <div class="card-header">
-              <h5 class="card-title"></h5>
+              <h5 class="card-title">{props.titulo}</h5>
             </div>
             <div class="card-body text-center">
               
-              <p class="card-text"></p>
+              <p class="card-text">{props.descripcion}</p>
             </div>
             <div class="card-footer">
-              <p class="card-text">Precio: </p>
+              <p class="card-text">Precio: {props.precio}</p>
             </div>
           </div>
         </div>

@@ -10,7 +10,7 @@ const Modificar = (props) => {
                         </div>
                         <div class="form-group">
                             <p>
-                                <label>Imagen: <input class="form-control" type="file" name="imagen" id="imagen"></label>
+                                <label>Imagen: <input class="form-control" type="file" name="imagen" id="imagen"/></label>
                             
                             </p>
                             <p>
