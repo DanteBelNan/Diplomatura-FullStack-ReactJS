@@ -1,0 +1,32 @@
+const Crear = (props) => {
+    return (
+        <div class="container" style="margin:100px auto;">
+            {{#if error}}
+                <h5>{{message}}</h5>
+            {{/if}}
+            <div class="row">
+                <div class="col-6 offset-3">
+                    <h4>Agregar un nuevo producto</h4>
+                    <form action="/admin/agregarArticulo" method="post" enctype="multipart/form-data">
+                        <div class="mb-3 row">
+                            <input type="text" class="form-control" placeholder="Titulo" name="titulo"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Imagen</label>
+                            <input class="form-control" type="file" name="imagen" id="imagen"/>
+                        </div>
+                        <div class="mb-3 row">
+                            <textarea type="text" class="form-control" placeholder="Descripcion" name="descripcion"></textarea>
+                        </div>
+                        <div class="mb-3 row">
+                            <input type="number" class="form-control" placeholder="Precio" name="precio" id="precio" min="0"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Crear</button>                               
+                    </form>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default Crear;
