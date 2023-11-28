@@ -1,17 +1,18 @@
+import { NavLink } from "react-router-dom"
+
 const Nav = (props) => {
     return (
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/home">Inicio</a>
+        <NavLink to="/home" className="navbar-brand">Inicio</NavLink>
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav">
 
-
             <li class="nav-item">
-              <a class="btn btn-outline-primary my-2 my-sm-0" href="/home/profile">Ver perfil</a>
+              <NavLink className="btn btn-outline-primary my-2 my-sm-0" to="/home/profile">Ver perfil</NavLink>
             </li>
             <li class="nav-item">
-              <a class="btn btn-outline-danger my-2 my-sm-0" href="/login/logout">Logout</a>
+              <NavLink to="/login/logout" className="btn btn-outline-danger my-2 my-sm-0">Logout</NavLink>
             </li>
 
           </ul>

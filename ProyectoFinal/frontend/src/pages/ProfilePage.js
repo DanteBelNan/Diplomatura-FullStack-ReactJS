@@ -1,11 +1,9 @@
-
-
-const Profile = (props) => {
+const ProfilePage = (props) => {
     return (
         <div class="container mt-5">
 
         </div>
     );
-}
+} 
 
-export default Profile;
+export default ProfilePage
