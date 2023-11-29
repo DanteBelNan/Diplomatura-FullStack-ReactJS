@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2023 a las 01:23:16
+-- Tiempo de generación: 29-11-2023 a las 19:53:40
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -40,7 +40,9 @@ CREATE TABLE `articulo` (
 --
 
 INSERT INTO `articulo` (`id`, `titulo`, `descripcion`, `precio`, `img_id`) VALUES
-(1, 'test', 'dante', 5, 'p8t4d3aidxlabyuql0vq');
+(7, 'asd', 'asd', 2, NULL),
+(8, 'pruebaApi', '123', 1, ''),
+(9, 'cargaDesdeNode', 'test', 15000, 'ewyvcpy6h71xeoo5igl3');
 
 --
 -- Índices para tablas volcadas
@@ -60,7 +62,7 @@ ALTER TABLE `articulo`
 -- AUTO_INCREMENT de la tabla `articulo`
 --
 ALTER TABLE `articulo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

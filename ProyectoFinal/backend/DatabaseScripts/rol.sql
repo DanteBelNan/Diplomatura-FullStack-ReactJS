@@ -38,7 +38,7 @@ CREATE TABLE `rol` (
 
 INSERT INTO `rol` (`idRol`, `nombre`) VALUES
 (1, 'usuario'),
-(3, 'admin');
+(2, 'admin');
 
 --
 -- Índices para tablas volcadas
