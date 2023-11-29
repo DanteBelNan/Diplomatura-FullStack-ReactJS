@@ -19,6 +19,7 @@ function App() {
           <Routes>
             <Route path="/articulos/:id" element={<ArticuloPage/>}/>
             <Route path="/" element={<HomePage/>}/>
+            <Route path="/profile/:id" element={<ProfilePage/>}/>
           </Routes>
         </BrowserRouter>
         

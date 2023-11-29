@@ -12,7 +12,6 @@ const uploader = util.promisify(cloudinary.uploader.upload);
 router.get('/articulo/:id', async (req, res, next) => {
   try{
     var id = req.params.id;
-    console.log("id:" + id);
     var articulo = await articuloModel.getArticulo(id);
     var imagen = ''
     if (articulo.img_id){
@@ -24,6 +23,16 @@ router.get('/articulo/:id', async (req, res, next) => {
     }
     articulo.imagen = imagen
     res.json(articulo)
+  }catch(error){
+    res.json(error)
+  }
+});
+
+router.get('/profile/:id', async (req, res, next) => {
+  try{
+    var id = req.params.id;
+    var usuario = await usuariosModel.getUserById(id);
+    res.json(usuario)
   }catch(error){
     res.json(error)
   }
@@ -61,6 +70,7 @@ router.get('/home',async function(req, res, next) {
     res.json(error)
   }
 });
+
 
 
 module.exports = router;
