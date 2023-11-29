@@ -147,4 +147,59 @@ router.post('/eliminarArticulo/:id',async (req, res, next) => {
   };
 });
 
+router.get('/modificarArticulo/:id', async (req, res, next) => {
+  try{
+    var id = req.params.id;
+  
+    var articulo = await articuloModel.getArticulo(id);
+    var imagen = ''
+    if (articulo.img_id){
+      imagen = cloudinary.image(articulo.img_id, {
+        width: 250,
+        height: 250,
+        crop: 'fill'
+      });
+    }
+    res.json({ success: true, redirectTo: '/modificarArticulo', articulo, imagen }); 
+  }catch(error){
+    console.log(error.message);
+    res.status(500).json({ success: false, message: error });
+  }
+});
+
+router.post('/modificarArticulo/:id',async (req, res, next) => {
+  try{
+      var id = req.params.id;
+      let img_id = req.body.img_original;
+      let borrar_img_vieja = false;
+      if (req.body.img_delete === "1"){
+          img_id = null;
+          borrar_img_vieja = true;
+      } else{
+          if (req.files && Object.keys(req.files).length > 0){
+              imagen = req.files.imagen;
+              img_id = (await uploader(imagen.tempFilePath)).public_id;
+              borrar_img_vieja = true;
+          }
+      }
+      if (borrar_img_vieja && req.body.img_original) {
+          await (destroy(req.body.img_original));
+      }
+      console.log(req.body)
+      var obj = {
+          titulo: req.body.titulo,
+          descripcion: req.body.descripcion,
+          precio: req.body.precio,
+          img_id
+      }
+
+      await articuloModel.modificarArticulo(obj, req.params.id);
+      res.json({ success: true, redirectTo: '/modificarArticulo/'+id, articulo: obj}); 
+
+  }catch(error){
+      console.log(error);
+      res.status(500).json({ success: false, message: error });
+  }
+});
+
 module.exports = router;

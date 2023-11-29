@@ -46,6 +46,23 @@ const ArticuloPage = (props) => {
         }
     };
 
+    const handleModificarArticulo = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.get(`http://localhost:3000/api/modificarArticulo/${id}`);
+
+            if (response.data.success) {
+                console.log(response.data)
+                navigate(`/modificarArticulo/${id}`);
+            } else {
+                setError(response.data.message || 'Error al obtener articulo');
+            }
+        } catch (error) {
+            console.error('Error al obtener articulo:', error);
+            
+        }
+    };
+
     return (
         <div class="container mt-5">
         <div class="row">
@@ -69,7 +86,9 @@ const ArticuloPage = (props) => {
             
                     <div class="row mt-3">
                         <div class="col-md-6 offset-md-3 text-center d-flex justify-content-center">
-                            <a class="btn btn-outline-warning my-2 my-sm-0 mr-2" href="/admin/modificarArticulo/{{articulo.id}}">Modificar Articulo</a>
+                        <form onSubmit={handleModificarArticulo}>
+                                <button type="submit" class="btn btn-outline-warning my-2 my-sm-0 mr-2">Modificar Articulo</button>
+                            </form>
                             <form onSubmit={handleDeleteArticulo}>
                                 <button type="submit" class="btn btn-outline-danger my-2 my-sm-0 ml-2">Eliminar Articulo</button>
                             </form>

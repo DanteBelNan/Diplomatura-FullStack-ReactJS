@@ -23,7 +23,6 @@ const LoginPage = (props) => {
 
             if (response.data.success) {
                 login(response.data);  
-                console.log(response.data)
                 navigate('/');
             } else {
                 setError(response.data.message || 'Error en la autenticación');

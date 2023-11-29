@@ -5,7 +5,6 @@ const Nav = (props) => {
     const { user } = useUser();
 
     const userId = user ? user.user.idUsuario : null;
-    console.log("El usuario es:", JSON.stringify(user, null, 2));
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">

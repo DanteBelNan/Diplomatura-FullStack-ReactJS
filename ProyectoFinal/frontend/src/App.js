@@ -13,6 +13,7 @@ import ProfilePage from "./pages/ProfilePage"
 import LoginPage from "./pages/LoginPage";
 import { UserProvider } from './contexts/UserContext';
 import CrearArticulo from "./pages/CrearArticulo";
+import ModificarArticulo from "./pages/ModificarArticulo";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Nav />
           <Routes>
             <Route path="/crearArticulo/" element={<CrearArticulo />} />
+            <Route path="/modificarArticulo/:id" element={<ModificarArticulo />} />
             <Route path="/articulos/:id" element={<ArticuloPage />} />
             <Route path="/profile/:id" element={<ProfilePage />} />
             <Route path="/login/*" element={<LoginPage />} />
