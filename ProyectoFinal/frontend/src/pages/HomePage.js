@@ -1,31 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import axios from 'axios';
 import { useUser } from '../contexts/UserContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';  
 
 import Card from "../components/articulo/Card";
 
 const HomePage = () => {
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [articulos, setArticulos] = useState([]);
-    const { user } = useUser();
-    const navigate = useNavigate();
+    const { user } = useUser();  
+    
+    const navigate = useNavigate();  
 
     useEffect(() => {
-        const cargarArticulos = async () => {
-            try {
-                const response = await axios.get('http://localhost:3000/api/home');
-                setArticulos(response.data);
-            } catch (error) {
-                console.error('Error al cargar artículos:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
         if (!user) {
             navigate('/login');
         } else {
+            const cargarArticulos = async () => {
+                setLoading(true);
+                try {
+                    const response = await axios.get('http://localhost:3000/api/home');
+                    setArticulos(response.data);
+                } catch (error) {
+                    console.error('Error al cargar artículos:', error);
+                } finally {
+                    setLoading(false);
+                }
+            };
             cargarArticulos();
         }
     }, [user, navigate]);
@@ -48,6 +50,6 @@ const HomePage = () => {
             </div>
         </div>
     );
-};
+}
 
 export default HomePage;

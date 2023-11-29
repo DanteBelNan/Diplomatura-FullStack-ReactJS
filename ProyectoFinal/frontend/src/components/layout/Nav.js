@@ -1,20 +1,24 @@
-import { NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom";
+import { useUser } from '../../contexts/UserContext';
 
 const Nav = (props) => {
+    const { user } = useUser();
+
+    const userId = user ? user.user.idUsuario : null;
+    console.log("El usuario es:", JSON.stringify(user, null, 2));
+
     return (
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <NavLink to="/" className="navbar-brand">Inicio</NavLink>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <NavLink to="/" className="navbar-brand">Inicio</NavLink>
 
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-          <ul class="navbar-nav">
-
-            <li class="nav-item">
-              <NavLink className="btn btn-outline-primary my-2 my-sm-0" to="/profile">Ver perfil</NavLink>
-            </li>
-
-          </ul>
-        </div>
-      </nav>
+            <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul className="navbar-nav">
+                    <li className="nav-item">
+                        <NavLink className="btn btn-outline-primary my-2 my-sm-0" to={`/profile/${userId}`}>Ver perfil</NavLink>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     );
 }
 

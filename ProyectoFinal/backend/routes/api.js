@@ -78,7 +78,7 @@ router.post('/login', async (req,res,next) => {
       const password = req.body.password;
       var data = await usuariosModel.getUserByUserNameAndPassword(usuario,password).then(data => {
           if(data != undefined){
-              res.json({ success: true, redirectTo: '/home' });  
+              res.json({ success: true, redirectTo: '/home', user: data });  
           }else{
             res.json({ success: false, message: 'Usuario o contraseña incorrectos' });
           }
