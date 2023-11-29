@@ -90,11 +90,7 @@ router.post('/modificarArticulo/:id',async (req, res, next) => {
         }
 
         await articuloModel.modificarArticulo(obj, req.params.id);
-        res.render('articulo/modificar', {
-            layout: 'layout', 
-            articulo: obj,
-            success: true, messageSuccess: 'Articulo modificado exitosamente'
-        });
+        res.redirect('/home/articulo/'+req.params.id)
     }catch(error){
         console.log(error);
         res.render('articulo/modificar', {

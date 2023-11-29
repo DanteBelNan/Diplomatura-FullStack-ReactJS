@@ -165,7 +165,7 @@ router.post('/forgotPassword/confirm', async(req,res,next) => {
 })
 
 router.post('/deleteUser', async(req, res, next) => {
-    var id = req.body.id;
+    var id = req.session.id_usuario
     var deleted = await usuariosModel.deleteUser(id).then(deleted => {
         res.redirect('/login/logout')
 
