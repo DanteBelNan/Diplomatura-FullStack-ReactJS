@@ -9,6 +9,7 @@ import Footer from "./components/layout/Footer";
 import HomePage from "./pages/HomePage"
 import ArticuloPage from "./pages/ArticuloPage"
 import ProfilePage from "./pages/ProfilePage"
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/articulos/:id" element={<ArticuloPage/>}/>
             <Route path="/" element={<HomePage/>}/>
             <Route path="/profile/:id" element={<ProfilePage/>}/>
+            <Route path="/login/" element={<LoginPage/>}/>
           </Routes>
         </BrowserRouter>
         

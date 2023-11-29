@@ -71,6 +71,22 @@ router.get('/home',async function(req, res, next) {
   }
 });
 
+router.post('/login', async (req,res,next) => {
+
+
+      const usuario = req.body.username;
+      const password = req.body.password;
+      var data = await usuariosModel.getUserByUserNameAndPassword(usuario,password).then(data => {
+          if(data != undefined){
+              res.json({ success: true, redirectTo: '/home' });  
+          }else{
+            res.json({ success: false, message: 'Usuario o contraseña incorrectos' });
+          }
+      }).catch(error => {
+          console.log(error)
+          res.status(500).json({ success: false, message: error });
+      })
+})
 
 
 module.exports = router;
