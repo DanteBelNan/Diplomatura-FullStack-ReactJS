@@ -7,40 +7,25 @@ import { useNavigate } from 'react-router-dom';
 const LoginPage = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [password2, setPassword2] = useState('');
+    const [email, setEmail] = useState('');
     const [error, setError] = useState('');
     const { login } = useUser(); 
     const navigate = useNavigate(); 
     
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
-
-        try {
-            const response = await axios.post('http://localhost:3000/api/login', {
-                username,
-                password
-            });
-
-            if (response.data.success) {
-                login(response.data);  
-                navigate('/');
-            } else {
-                setError(response.data.message || 'Error en la autenticación');
-            }
-        } catch (error) {
-            console.error('Error al iniciar sesión:', error);
-            
-        }
-    };
-
     const handleRegister= async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.get(`http://localhost:3000/api/register`, {
+            const response = await axios.post(`http://localhost:3000/api/register`, {
+                username,
+                password,
+                password2,
+                email
             });
 
             if (response.data.success) {
-                navigate(`/register`);
+                navigate(`/`);
             } else {
                 setError(response.data.message || 'No se pudo entrar a registrarse');
             }
@@ -52,11 +37,10 @@ const LoginPage = (props) => {
 
     return (
         <div className="container">
-            <h1>Formulario de login</h1>
             {error && <div className="alert alert-danger">{error}</div>}
-            <form onSubmit={handleLogin}>
-                <div className="mb-3">
-                    <label htmlFor="inputUser" className="form-label">Usuario</label>
+            <form onSubmit={handleRegister}>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Usuario</label>
                     <input
                         type="text"
                         className="form-control"
@@ -67,8 +51,20 @@ const LoginPage = (props) => {
                         onChange={(e) => setUsername(e.target.value)}
                     />
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="inputPassword" className="form-label">Contraseña</label>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="inputEmail"
+                        name="email"
+                        placeholder="Introduce tu usuario"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
                     <input
                         type="password"
                         className="form-control"
@@ -78,11 +74,17 @@ const LoginPage = (props) => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
+                    <input
+                        type="password"
+                        className="form-control"
+                        id="inputPassword2"
+                        name="password2"
+                        placeholder="Introduce tu contraseña"
+                        value={password2}
+                        onChange={(e) => setPassword2(e.target.value)}
+                    />
                 </div>
-                <button type="submit" className="btn btn-primary">Iniciar sesión</button>
-            </form>
-            <form onSubmit={handleRegister}>
-                <button type="submit" class="btn btn-outline-danger my-2 my-sm-0 ml-2">Registrarse</button>
+                <button type="submit" class="btn btn-primary">Registrarse</button>
             </form>
         </div>
     );

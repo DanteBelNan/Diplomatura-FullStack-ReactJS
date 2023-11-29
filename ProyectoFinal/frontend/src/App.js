@@ -11,6 +11,7 @@ import HomePage from "./pages/HomePage"
 import ArticuloPage from "./pages/ArticuloPage"
 import ProfilePage from "./pages/ProfilePage"
 import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 import { UserProvider } from './contexts/UserContext';
 import CrearArticulo from "./pages/CrearArticulo";
 import ModificarArticulo from "./pages/ModificarArticulo";
@@ -28,6 +29,7 @@ function App() {
             <Route path="/articulos/:id" element={<ArticuloPage />} />
             <Route path="/profile/:id" element={<ProfilePage />} />
             <Route path="/login/*" element={<LoginPage />} />
+            <Route path="/register/*" element={<RegisterPage />} />
             <Route path="/*" element={<HomePage />} />
           </Routes>
         </UserProvider>

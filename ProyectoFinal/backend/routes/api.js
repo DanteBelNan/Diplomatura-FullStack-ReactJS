@@ -100,6 +100,34 @@ router.post('/login', async (req,res,next) => {
 
 })
 
+router.get('/register', async(req,res,next) => {
+  res.json({ success: true, message: 'Moviendose a register' });
+})
+
+router.post('/register', async (req,res,next) => {
+  try{
+
+      if(req.body.username == "" || req.body.password ==  "" || req.body.password2 == "" || req.body.email == ""){
+        res.json({ success: false, message: 'Todos los campos deben tener contenido' });
+      }
+      if(req.body.password != req.body.password2 ){
+        res.json({ success: false, message: 'Las contraseñas deben de ser iguales' });
+      }
+      
+      var createdUser = {
+          username: req.body.username,
+          password: req.body.password,
+          mail: req.body.email,
+          idRol: 1 //rol de usuario
+        };
+      var newUser = await usuariosModel.createUser(createdUser).then(newUser => {
+          res.json({ success: true, message: 'Usuario registrado' });
+      })
+  } catch (error) {
+      console.log(error);
+  }
+})
+
 router.post('/crearArticulo', async (req,res,next) => {
     const titulo = req.body.titulo;
     const descripcion =  req.body.descripcion;
