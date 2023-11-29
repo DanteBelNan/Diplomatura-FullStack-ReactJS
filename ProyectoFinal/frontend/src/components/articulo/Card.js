@@ -7,7 +7,7 @@ const Card = (props) => {
         <div class="card">
           <div class="card-header d-flex justify-content-between align-items-center">
             <h5 class="card-title">{titulo}</h5>
-            <NavLink to="home/articulo/{{id}}" className="btn btn-link">
+            <NavLink to={`/articulos/${id}`} className="btn btn-link">
               <i class="bi bi-three-dots"></i>
             </NavLink>
           </div>

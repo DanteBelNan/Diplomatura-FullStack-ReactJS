@@ -8,14 +8,37 @@ var cloudinary = require('cloudinary').v2;
 const uploader = util.promisify(cloudinary.uploader.upload);
 
 
-/* GET home page. */
+
+router.get('/articulo/:id', async (req, res, next) => {
+  try{
+    var id = req.params.id;
+    console.log("id:" + id);
+    var articulo = await articuloModel.getArticulo(id);
+    var imagen = ''
+    if (articulo.img_id){
+      imagen = cloudinary.url(articulo.img_id, {
+        width: 250,
+        height: 250,
+        crop: 'fill'
+      });
+    }
+    articulo.imagen = imagen
+    res.json(articulo)
+  }catch(error){
+    res.json(error)
+  }
+});
+
+
+
+
 router.get('/home',async function(req, res, next) {
   try{
     var articulos = await articuloModel.getArticulos();
 
     articulos = articulos.map(articulo => {
       if (articulo.img_id){
-        const imagen = cloudinary.image(articulo.img_id, {
+        const imagen = cloudinary.url(articulo.img_id, {
           width: 100,
           height: 100,
           crop: 'fill'
@@ -35,19 +58,9 @@ router.get('/home',async function(req, res, next) {
     res.json(articulos)
 
   }catch(error){
-    console.log(error.message);
-    res.render('index', {
-      layout: 'layout',
-      articulos: [],
-      error: true,
-      message: error.message
-    });
+    res.json(error)
   }
 });
-
-
-
-
 
 
 module.exports = router;

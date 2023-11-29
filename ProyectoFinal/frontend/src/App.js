@@ -8,7 +8,6 @@ import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import HomePage from "./pages/HomePage"
 import ArticuloPage from "./pages/ArticuloPage"
-import LoginPage from "./pages/LoginPage"
 import ProfilePage from "./pages/ProfilePage"
 
 function App() {
@@ -18,6 +17,7 @@ function App() {
         <BrowserRouter>
           <Nav/>
           <Routes>
+            <Route path="/articulos/:id" element={<ArticuloPage/>}/>
             <Route path="/" element={<HomePage/>}/>
           </Routes>
         </BrowserRouter>
