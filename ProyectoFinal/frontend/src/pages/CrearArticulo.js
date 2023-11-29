@@ -22,7 +22,7 @@ const CrearArticulo = (props) => {
         }
 
     }, [user, navigate]);
-    const handleLogin = async (e) => {
+    const handleCreateArticulo = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:3000/api/crearArticulo', {
@@ -50,7 +50,7 @@ const CrearArticulo = (props) => {
                 <div class="col-6 offset-3">
                     <h4>Agregar un nuevo producto</h4>
                     {error && <div className="alert alert-danger">{error}</div>}
-                    <form onSubmit={handleLogin} enctype="multipart/form-data">
+                    <form onSubmit={handleCreateArticulo} enctype="multipart/form-data">
                         <div class="mb-3 row">
                             <label htmlFor="inputTitulo" className="form-label">Titulo</label>
                             <input

@@ -16,8 +16,6 @@ var transporter = nodemailer.createTransport({
     }
   });
 
-
-
 router.get('/articulo/:id', async (req, res, next) => {
   try{
     var id = req.params.id;
@@ -46,9 +44,6 @@ router.get('/profile/:id', async (req, res, next) => {
     res.json(error)
   }
 });
-
-
-
 
 router.get('/home',async function(req, res, next) {
   try{
@@ -93,8 +88,8 @@ router.post('/login', async (req,res,next) => {
                 subject: "Inicio de sesión",
                 text: "Se ha realizado un inicio de sesión en tu cuenta " + data["username"],
                 html: "<h1>Se ha realizado un inicio de sesión en tu cuenta " + data["username"] + " </h1>"
-            });
-              res.json({ success: true, redirectTo: '/home', user: data });  
+              });
+              res.json({ success: true, redirectTo: '/', user: data });  
           }else{
             res.json({ success: false, message: 'Usuario o contraseña incorrectos' });
           }
@@ -125,7 +120,7 @@ router.post('/crearArticulo', async (req,res,next) => {
               img_id
           }
           await articuloModel.createArticulo(obj);
-          res.json({ success: true, redirectTo: '/home' }); 
+          res.json({ success: true, redirectTo: '/' }); 
 
       }else{
         res.json({ success: false, message: 'Falta llenar campos' });
@@ -135,5 +130,21 @@ router.post('/crearArticulo', async (req,res,next) => {
         res.status(500).json({ success: false, message: error });
     };
 })
+
+const destroy = util.promisify(cloudinary.uploader.destroy);
+router.post('/eliminarArticulo/:id',async (req, res, next) => {
+  try{
+      var id = req.params.id;
+      let articulo = await articuloModel.getArticulo(id);
+      if(articulo.img_id){
+          await (destroy(articulo.img_id));
+      }
+      await articuloModel.deleteArticulo(id);
+      res.json({ success: true, redirectTo: '/' }); 
+  }catch(error){
+      console.log(error);
+      res.status(500).json({ success: false, message: error });
+  };
+});
 
 module.exports = router;

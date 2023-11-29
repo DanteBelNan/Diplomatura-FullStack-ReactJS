@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import axios from 'axios'
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const ArticuloPage = (props) => {
     const [loading, setLoading] = useState(false);
     const [articulo, setArticulo] = useState([]);
     const { id } = useParams();
+    const [error, setError] = useState('');
+    const navigate = useNavigate(); 
 
     useEffect(() => {
         const cargarArticulo = async () => {
@@ -25,6 +28,23 @@ const ArticuloPage = (props) => {
             cargarArticulo();
         }
     }, [id]);
+
+    const handleDeleteArticulo = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post(`http://localhost:3000/api/eliminarArticulo/${id}`);
+
+            if (response.data.success) {
+                console.log(response.data)
+                navigate('/');
+            } else {
+                setError(response.data.message || 'Error en la eliminacion');
+            }
+        } catch (error) {
+            console.error('Error al crear articulo:', error);
+            
+        }
+    };
 
     return (
         <div class="container mt-5">
@@ -50,7 +70,7 @@ const ArticuloPage = (props) => {
                     <div class="row mt-3">
                         <div class="col-md-6 offset-md-3 text-center d-flex justify-content-center">
                             <a class="btn btn-outline-warning my-2 my-sm-0 mr-2" href="/admin/modificarArticulo/{{articulo.id}}">Modificar Articulo</a>
-                            <form action="/admin/eliminarArticulo/{{articulo.id}}" method="post">
+                            <form onSubmit={handleDeleteArticulo}>
                                 <button type="submit" class="btn btn-outline-danger my-2 my-sm-0 ml-2">Eliminar Articulo</button>
                             </form>
                         </div>
