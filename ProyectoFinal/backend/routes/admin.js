@@ -14,7 +14,6 @@ router.get('/agregarArticulo', (req, res, next) => {
 });
 
 router.post('/agregarArticulo', async(req, res, next) => {
-    console.log(req.body)
     try{
         var img_id = '';
         if (req.files && Object.keys(req.files).length > 0){
@@ -31,6 +30,11 @@ router.post('/agregarArticulo', async(req, res, next) => {
             await articuloModel.createArticulo(obj);
             res.redirect('/home');
 
+        }else{
+            res.render('index', {
+                layout: 'layout',
+                error: true, messageError: 'Falta llenar campos'
+            });
         }
     }catch(error){
         console.log(error);

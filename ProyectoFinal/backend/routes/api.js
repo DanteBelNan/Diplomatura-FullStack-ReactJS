@@ -105,5 +105,35 @@ router.post('/login', async (req,res,next) => {
 
 })
 
+router.post('/crearArticulo', async (req,res,next) => {
+    const titulo = req.body.titulo;
+    const descripcion =  req.body.descripcion;
+    const imagen = req.body.imagen;
+    const precio = req.body.precio;
+
+    try{
+      var img_id = '';
+      if (req.files && Object.keys(req.files).length > 0){
+          imagen = req.files.imagen;
+          img_id = (await uploader(imagen.tempFilePath)).public_id;
+      }
+      if(req.body.titulo != "" && req.body.descripcion != "" && req.body.precio != ""){
+          var obj = {
+              titulo:req.body.titulo,
+              descripcion:req.body.descripcion,
+              precio:req.body.precio,
+              img_id
+          }
+          await articuloModel.createArticulo(obj);
+          res.json({ success: true, redirectTo: '/home' }); 
+
+      }else{
+        res.json({ success: false, message: 'Falta llenar campos' });
+      }
+    }catch(error){
+        console.log(error);
+        res.status(500).json({ success: false, message: error });
+    };
+})
 
 module.exports = router;

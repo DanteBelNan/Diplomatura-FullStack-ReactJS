@@ -12,6 +12,7 @@ import ArticuloPage from "./pages/ArticuloPage"
 import ProfilePage from "./pages/ProfilePage"
 import LoginPage from "./pages/LoginPage";
 import { UserProvider } from './contexts/UserContext';
+import CrearArticulo from "./pages/CrearArticulo";
 
 function App() {
   return (
@@ -21,10 +22,11 @@ function App() {
         <UserProvider>
           <Nav />
           <Routes>
+            <Route path="/crearArticulo/" element={<CrearArticulo />} />
             <Route path="/articulos/:id" element={<ArticuloPage />} />
             <Route path="/profile/:id" element={<ProfilePage />} />
             <Route path="/login/*" element={<LoginPage />} />
-            <Route path="/" element={<HomePage />} />
+            <Route path="/*" element={<HomePage />} />
           </Routes>
         </UserProvider>
       </BrowserRouter>

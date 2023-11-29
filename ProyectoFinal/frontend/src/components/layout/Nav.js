@@ -15,6 +15,7 @@ const Nav = (props) => {
                 <ul className="navbar-nav">
                     <li className="nav-item">
                         <NavLink className="btn btn-outline-primary my-2 my-sm-0" to={`/profile/${userId}`}>Ver perfil</NavLink>
+                        <NavLink className="btn btn-outline-primary my-2 my-sm-0" to={`/crearArticulo`}>Crear Articulo</NavLink>
                     </li>
                 </ul>
             </div>
