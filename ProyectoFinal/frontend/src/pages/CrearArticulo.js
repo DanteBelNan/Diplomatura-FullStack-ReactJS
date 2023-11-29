@@ -1,20 +1,29 @@
+import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../contexts/UserContext';
 
 
 const CrearArticulo = (props) => {
 
+    
     const [titulo, setTitulo] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const [imagen, setImagen] = useState('');
     const [precio, setPrecio] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate(); 
+    const { user } = useUser();
 
+    useEffect(() => {
+        if(user.user.rol !== "admin"){
+            navigate('/home');
+        }
+
+    }, [user, navigate]);
     const handleLogin = async (e) => {
         e.preventDefault();
-
         try {
             const response = await axios.post('http://localhost:3000/api/crearArticulo', {
                 titulo,
@@ -30,7 +39,7 @@ const CrearArticulo = (props) => {
                 setError(response.data.message || 'Error en la autenticación');
             }
         } catch (error) {
-            console.error('Error al iniciar sesión:', error);
+            console.error('Error al crear articulo:', error);
             
         }
     };
