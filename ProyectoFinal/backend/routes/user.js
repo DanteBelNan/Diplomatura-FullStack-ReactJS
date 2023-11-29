@@ -2,7 +2,15 @@ var express = require('express');
 var router = express.Router();
 var usuariosModel = require('../models/usuarios');
 var rolesModel = require('../models/roles');
-
+const nodemailer = require("nodemailer");
+var transporter = nodemailer.createTransport({
+    host: "sandbox.smtp.mailtrap.io",
+    port: 2525,
+    auth: {
+      user: "a4ed061c5a0221",
+      pass: "9eaeabb4c0bc9f"
+    }
+  });
 
 router.get('/', function(req,res,next){
     res.render('login/login',{
@@ -24,22 +32,26 @@ router.post('/', async (req,res,next) => {
         var usuario = req.body.username;
         var password = req.body.password;
         var idRol
-        var data = await usuariosModel.getUserByUserNameAndPassword(usuario,password).then(data => {
-            if(data != undefined){
-                req.session.id_usuario = data["idUsuario"];
-                req.session.username = data["username"];
-                req.session.rol = data["rol"]
-                res.redirect('/home');
-            }else{
-                res.render('login/login', {
-                    layout: 'layout',
-                    error: true
-                });
-            }
-        }).catch(error => {
-            console.log("error");
-            throw error
-        })
+        var data = await usuariosModel.getUserByUserNameAndPassword(usuario,password);
+        if(data != undefined){
+            req.session.id_usuario = data["idUsuario"];
+            req.session.username = data["username"];
+            req.session.rol = data["rol"]
+            let info = await transporter.sendMail({
+                from: '"noReplyArticulos" <noReply@articulos.com>',
+                to: data["mail"],
+                subject: "Inicio de sesión",
+                text: "Se ha realizado un inicio de sesión en tu cuenta " + data["username"],
+                html: "<h1>Se ha realizado un inicio de sesión en tu cuenta " + data["username"] + " </h1>"
+            });
+            res.redirect('/home');
+        }else{
+            res.render('login/login', {
+                layout: 'layout',
+                error: true
+            });
+        }
+        
 
     } catch (error) {
         console.log(error);
