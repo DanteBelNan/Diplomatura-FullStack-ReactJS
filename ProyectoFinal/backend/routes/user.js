@@ -84,11 +84,11 @@ router.post('/register', async (req,res,next) => {
                 message: "Las contraseñas deben de ser iguales"
             });
         }
-        
+
         var createdUser = {
             username: req.body.username,
             password: req.body.password,
-            email: req.body.email,
+            mail: req.body.email,
             idRol: 1 //rol de usuario
           };
         var newUser = await usuariosModel.createUser(createdUser).then(newUser => {
