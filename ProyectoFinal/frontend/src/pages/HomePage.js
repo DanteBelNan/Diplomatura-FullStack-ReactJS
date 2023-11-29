@@ -1,35 +1,53 @@
-import { useState, useEffect } from "react";
-import axios from 'axios'
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
+import { useUser } from '../contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
+
 import Card from "../components/articulo/Card";
 
-const HomePage = (props) => {
-    const [loading, setLoading] = useState(false);
+const HomePage = () => {
+    const [loading, setLoading] = useState(true);
     const [articulos, setArticulos] = useState([]);
+    const { user } = useUser();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const cargarArticulos = async () => {
-            setLoading(true);
-            const response = await axios.get('http://localhost:3000/api/home');
-            setArticulos(response.data);
-            setLoading(false);
+            try {
+                const response = await axios.get('http://localhost:3000/api/home');
+                setArticulos(response.data);
+            } catch (error) {
+                console.error('Error al cargar artículos:', error);
+            } finally {
+                setLoading(false);
+            }
         };
-        cargarArticulos();
-    }, []);
+
+        if (!user) {
+            navigate('/login');
+        } else {
+            cargarArticulos();
+        }
+    }, [user, navigate]);
 
     return (
-        <div class="container mt-5">
-        <div class="row">
-            { loading ? (<p>Cargando...</p>) : (
-                    articulos.map(item => <Card id={item.id} titulo={item.titulo} descripcion={item.descripcion}
-                        imagen={item.imagen} precio={item.precio}/>)
-            )}
-        </div>
-        <form action="/login/deleteUser" method="post">
-            <input type="hidden" value="{{idUsuario}}" name="id"/>
-            <button type="submit" class="btn btn-danger">Remover cuenta</button>
-        </form>
+        <div className="container mt-5">
+            <div className="row">
+                {loading ? (<p>Cargando...</p>) : (
+                    articulos.map(item => (
+                        <Card
+                            key={item.id}
+                            id={item.id}
+                            titulo={item.titulo}
+                            descripcion={item.descripcion}
+                            imagen={item.imagen}
+                            precio={item.precio}
+                        />
+                    ))
+                )}
+            </div>
         </div>
     );
-} 
+};
 
-export default HomePage
+export default HomePage;

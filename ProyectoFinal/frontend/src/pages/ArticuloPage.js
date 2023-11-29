@@ -38,7 +38,7 @@ const ArticuloPage = (props) => {
                       <h5 class="card-title">{articulo.titulo}</h5>
                     </div>
                     <div class="card-body text-center">
-                      <img src={articulo.imagen}/>
+                      <img src={articulo.imagen} alt="Imagen de articulo"/>
                       <p class="card-text">{articulo.descripcion}</p>
                     </div>
                     <div class="card-footer">

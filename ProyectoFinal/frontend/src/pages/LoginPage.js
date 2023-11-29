@@ -1,10 +1,16 @@
 import { useState } from "react";
 import axios from 'axios';
+import { useUser } from '../contexts/UserContext'; 
+import { useNavigate } from 'react-router-dom';
+
 
 const LoginPage = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const { login } = useUser(); 
+    const navigate = useNavigate(); 
+    
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -15,15 +21,16 @@ const LoginPage = (props) => {
                 password
             });
 
-            // Si la respuesta es exitosa, redirige a /home
             if (response.data.success) {
-                window.location.href = '/';
+                login(response.data);  
+                console.log(response.data)
+                navigate('/');
             } else {
                 setError(response.data.message || 'Error en la autenticación');
             }
         } catch (error) {
             console.error('Error al iniciar sesión:', error);
-            // Manejo de errores
+            
         }
     };
 

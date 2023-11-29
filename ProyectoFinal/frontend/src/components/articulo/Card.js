@@ -12,7 +12,7 @@ const Card = (props) => {
             </NavLink>
           </div>
           <div class="card-body text-center">
-            <img src={imagen}/>
+            <img src={imagen} alt="imagen de articulo"/>
             <p class="card-text">{descripcion}</p>
           </div>
           <div class="card-footer">

@@ -3,7 +3,9 @@ var md5 = require('md5');
 
 async function getUserByUserNameAndPassword(user, password){
     try {
-        var query = "select idUsuario,username,idRol from usuarios where username = ? and password = ? limit 1";
+        var query = "select u.idUsuario as idUsuario, u.username as username, u.password as password, r.nombre as rol from usuarios as u "+
+        "inner join rol as r on r.idRol = u.idRol " +
+        "where username = ? and password = ? limit 1";
         var rows = await pool.query(query, [user, password]);
         return rows[0];
     }catch(error){

@@ -28,8 +28,8 @@ router.post('/', async (req,res,next) => {
             if(data != undefined){
                 req.session.id_usuario = data["idUsuario"];
                 req.session.username = data["username"];
-                idRol = data["idRol"]
-                
+                req.session.rol = data["rol"]
+                res.redirect('/home');
             }else{
                 res.render('login/login', {
                     layout: 'layout',
@@ -40,10 +40,6 @@ router.post('/', async (req,res,next) => {
             console.log("error");
             throw error
         })
-        var nombreId = await rolesModel.getRolById(idRol).then(nombreId => {
-            req.session.rol = nombreId["nombre"];
-        })
-        res.redirect('/home');
 
     } catch (error) {
         console.log(error);
