@@ -70,7 +70,7 @@ router.post('/register', async (req,res,next) => {
             req.session = {}; // Inicializa req.session si no está definido
         }
 
-        if(req.body.username == "" || req.body.password ==  "" || req.body.password2 == ""){
+        if(req.body.username == "" || req.body.password ==  "" || req.body.password2 == "" || req.body.email == ""){
             res.render('login/register', {
                 layout: 'layout',
                 error: true,
@@ -84,12 +84,11 @@ router.post('/register', async (req,res,next) => {
                 message: "Las contraseñas deben de ser iguales"
             });
         }
-        var usuario = req.body.username;
-        var password = req.body.password;
-        var password2 = req.body.password2;
+        
         var createdUser = {
             username: req.body.username,
             password: req.body.password,
+            email: req.body.email,
             idRol: 1 //rol de usuario
           };
         var newUser = await usuariosModel.createUser(createdUser).then(newUser => {
